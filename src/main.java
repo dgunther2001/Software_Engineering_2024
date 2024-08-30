@@ -1,6 +1,4 @@
-import java.util.*;
-
-class factorial {
+class Factorial {
 
     /**
      * @param  args 
