@@ -5,7 +5,7 @@ class factorial {
         System.out.println(factorial(5));
     }
 
-    public int factorial(int FacValue) {
+    public static int factorial(int FacValue) {
         if (FacValue == 1 || FacValue == 0) {
             return 1;
         }
