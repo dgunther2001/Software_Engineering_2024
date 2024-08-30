@@ -5,12 +5,12 @@ class factorial {
         System.out.println(factorial(5));
     }
 
-    public static int factorial(int FacValue) {
-        if (FacValue == 1 || FacValue == 0) {
+    public static int factorial(int facValue) {
+        if (facValue == 1 || facValue == 0) {
             return 1;
         }
 
-        return FacValue * factorial(FacValue - 1);
+        return facValue * factorial(facValue - 1);
     }
 
 }
