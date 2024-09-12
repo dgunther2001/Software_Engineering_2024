@@ -8,7 +8,7 @@ public interface ProtoComputeInit {
      * 
      * @param DataStream
      */
-    public void sendComputeRequest(DataStream Data);
+    public void sendComputeRequest(DataStream data);
 
     /**
      * @param None
