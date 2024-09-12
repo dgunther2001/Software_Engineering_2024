@@ -14,10 +14,6 @@ public interface ProtoComputeExec {
      * Sends computed result back to initalizer
      * @param data
      */
-    public void sendDataResponse(Datastream data);
+    public void sendDataResponse(ProtoDataStream data); // exectutes the computation and has a response
 
-    /**
-     * Executes the computation
-     */
-    public void doComputation();
 }

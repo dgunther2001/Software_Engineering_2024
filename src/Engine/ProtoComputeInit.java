@@ -6,13 +6,13 @@ package engine;
 public interface ProtoComputeInit {
     /**
      * 
-     * @param DataStream
+     * @param
      */
-    public void sendComputeRequest(DataStream data);
+    public AckToken sendComputeRequest(ProtoDataStream data); // sends AckToken
 
     /**
-     * @param None
+     *
      * @return
      */
-    public AckToken processExecAck();
+    public ProtoDataStream receiveResponse(); // receives the response
 }
