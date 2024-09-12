@@ -1,4 +1,8 @@
-package Engine;
+package engine;
+
+/**
+ * Actual execution component of the compute engine.
+ */
 public interface ProtoComputeExec {
     public void sendAckTokenToInitializaer();         // send an Acknowledgement token
 
