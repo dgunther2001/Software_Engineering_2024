@@ -14,5 +14,5 @@ public interface ProtoComputeInit {
      *
      * @return
      */
-    public ProtoDataStream receiveResponse(); // receives the response
+    public ProtoDataStream receiveComputeResponse(); // receives the response
 }
