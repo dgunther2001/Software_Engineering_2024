@@ -13,15 +13,28 @@ public enum AckToken {
 	private final int id;
 	private final boolean success;
 	
+	/**
+	 * 
+	 * @param Token ID.
+	 * @param Boolean for success.
+	 */
 	private AckToken(int id, boolean success) {
 		this.id = id;
 		this.success = success;
 	}
 	
+	/**
+	 * 
+	 * @return The ID of the AckToken.
+	 */
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 * 
+	 * @return A boolean.
+	 */
 	public boolean success() {
 		return success;
 	}

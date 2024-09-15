@@ -3,6 +3,7 @@ package engine;
 /**
  * User component of the system
  * 
+ * Ignore this:
  * import java.util.InputMismatchException;
  * import java.util.Scanner;
  * 
@@ -59,11 +60,22 @@ package engine;
 
 public class ProtoUser {
 	
+	/**
+	 * 
+	 * @param ProtoComputeInit to get the user input.
+	 * 
+	 * This method transfers the user input through the compute engine and
+	 * determines if it is a valid input or not.
+	 */
+	
 	public void prototype(ProtoComputeInit computeInit) {
 		
+		ProtoDataStream inputData = ProtoInput.getUserInput();
+		computeInit.sendComputeRequest(inputData);
 		
-		ProtoDataStream data = ProtoInput.getUserInput();
-		computeInit.sendComputeRequest(data);
+		ProtoDataStream outputData = computeInit.receiveComputeResponse();
+		
+		
 	}
 
 	

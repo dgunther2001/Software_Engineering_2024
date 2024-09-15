@@ -5,6 +5,10 @@ package engine;
  */
 public interface ProtoInput {
 	
+	/**
+	 * 
+	 * @return ProtoDataStream as the user input.
+	 */
 	static ProtoDataStream getUserInput() {
 		return null;
 	}
