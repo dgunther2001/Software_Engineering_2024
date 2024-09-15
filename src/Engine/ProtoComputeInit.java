@@ -8,11 +8,22 @@ public interface ProtoComputeInit {
      * 
      * @param
      */
-    public AckToken sendComputeRequest(ProtoDataStream data); // sends AckToken
+    public AckToken sendComputeRequest(ProtoComputeEngineDataStream data); // sends AckToken
 
     /**
      *
      * @return
      */
-    public ProtoDataStream receiveComputeResponse(); // receives the response
+    public ProtoComputeEngineDataStream receiveComputeResponse(); // receives the response
+
+    /**
+     * Sends an acknowledgement token to the user and receives the input data
+     */
+    public void receiveUserRequest(ProtoDataStream data);
+
+    /**
+     * Sends a user parsable data stream back to the user
+     */
+    public ProtoDataStream sendResponseToUser();
 }
+

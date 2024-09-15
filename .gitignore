@@ -1,7 +1,7 @@
 bin
 src/Engine/.LCKDataStore.java~
 src/Engine/.LCKUser.java~
-/.gradle/
-/.project/
-/.setting/org.eclipse.buildship.core.prefs/
-/.classpath/
+.gradle
+.project
+.settings/org.eclipse.buildship.core.prefs
+.classpath
