@@ -15,8 +15,8 @@ public class ComputeExec implements ProtoComputeExec{
     /**
      * send data back to the compute engine initializer unit as a response
      */
-    public void sendDataResponse(ProtoComputeEngineDataStream data)
-    {
+    public void sendDataResponse(ProtoComputeEngineDataStream data) {
         
     }
+
 }
