@@ -1,7 +1,7 @@
 package engine;
 
 /**
- * Datsa stream that gets passed around (will be an integer)
+ * Data stream that gets passed to and from components of the compute engine (an integer)
  */
 public interface ProtoDataStream {
     // will hold the integer in some format parsable by the computing part of the compute engine
