@@ -5,14 +5,23 @@ package engine;
  */
 public interface ProtoComputeInit {
     /**
-     * 
-     * @param
+     * Sends a compute request to the execution engine with a compute engine data stream value
      */
-    public AckToken sendComputeRequest(ProtoDataStream data); // sends AckToken
+    public AckToken sendComputeRequest(ProtoComputeEngineDataStream data); // sends AckToken
 
     /**
-     *
-     * @return
+     * Function that receives a parsable data stream back from the execution engine
      */
-    public ProtoDataStream receiveComputeResponse(); // receives the response
+    public ProtoComputeEngineDataStream receiveComputeResponse(); // receives the response
+
+    /**
+     * Sends an acknowledgement token to the user and receives the input data
+     */
+    public void receiveUserRequest(ProtoDataStream data);
+
+    /**
+     * Sends a user parsable data stream back to the user
+     */
+    public ProtoDataStream sendResponseToUser();
 }
+

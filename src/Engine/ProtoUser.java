@@ -71,11 +71,9 @@ public class ProtoUser {
 	public void prototype(ProtoComputeInit computeInit) {
 		
 		ProtoDataStream inputData = ProtoInput.getUserInput();
-		computeInit.sendComputeRequest(inputData);
+		computeInit.receiveUserRequest(inputData);
 		
-		ProtoDataStream outputData = computeInit.receiveComputeResponse();
-		
-		
+		ProtoDataStream outputData = computeInit.sendResponseToUser();
 	}
 
 	
