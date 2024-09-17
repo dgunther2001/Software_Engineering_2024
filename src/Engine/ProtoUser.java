@@ -58,7 +58,7 @@ package engine;
 */
 
 
-public class ProtoUser {
+public interface ProtoUser {
 	
 	/**
 	 * 
@@ -68,13 +68,7 @@ public class ProtoUser {
 	 * determines if it is a valid input or not.
 	 */
 	
-	public void prototype(ProtoComputeInit computeInit) {
-		
-		ProtoDataStream inputData = ProtoInput.getUserInput();
-		computeInit.receiveUserRequest(inputData);
-		
-		ProtoDataStream outputData = computeInit.sendResponseToUser();
-	}
+	public void prototype(ProtoDataStream data);
 
 	
 }

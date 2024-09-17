@@ -4,6 +4,7 @@ package engine;
  * The actual implementation of the execution engine
  */
 public class ComputeExec implements ProtoComputeExec{
+	ProtoComputeEngineDataStream computedValue;
     
     /**
      * acknowledgment of data received

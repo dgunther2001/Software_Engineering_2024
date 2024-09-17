@@ -4,7 +4,9 @@ package engine;
  * Actual implementation of thecompute engine intermediary
  */
 public class ComputeInit {
-
+	ProtoComputeEngineDataStream sendToComputeExec;
+	ProtoDataStream sendToUser;
+	DataStorageRequest sendToDataStore;
     /**
      * Sends a compute request to the execution engine
      */
