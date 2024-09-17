@@ -8,22 +8,16 @@ import static org.mockito.Mockito.when;
 import engine.*;
 
 public class Test_User_Compute {
+	
+	// add testComputeToUser
 
-		/*
 	@Test
-	public void testUserAPI() throws Exception {
-		ComputeInit mockComputeInitAPI = Mockito.mock(ComputeInit.class);
-		when(mockComputeInitAPI.receiveUserRequest(any(DataStream.class))).thenReturn(null);
+	public void testUserToComputeAPI() throws Exception {
+	    DataStream mockData = Mockito.mock(DataStream.class);
 
 		
 		User testUser = new User();
-		testUser.prototype(mockComputeInitAPI);
-	}
-	*/
-	
-	@Test
-	public void tester_test() {
-		System.out.println("Hello");
+		testUser.prototype(mockData);
 	}
 	
 	
