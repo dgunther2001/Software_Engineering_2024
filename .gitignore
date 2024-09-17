@@ -5,3 +5,4 @@ src/Engine/.LCKUser.java~
 .project
 .settings/org.eclipse.buildship.core.prefs
 .classpath
+/build/

@@ -1,17 +1,15 @@
 package engine;
-import java.util.ArrayList;
-
-public class DataStore implements ProtoDataStore{
-	 DataStorageRequest dataValue;
-	 /**
+/**
+ * Data storage component attached to the controller
+ */
+public interface ProtoDataStore {
+    /**
      * Store data in storage
      * use when starting a new computation
      * @param req
      * @return confirmation response
      */
-    public DataStoreResponse storeData(DataStorageRequest req) {
-    	return null;
-    }
+    DataStoreResponse storeData(DataStorageRequest req);
     
     /**
      * get data from storage
@@ -19,9 +17,7 @@ public class DataStore implements ProtoDataStore{
      * @param key
      * @return confirmation response
      */
-    public DataLoadResponse getData(DataStoreKey key) {
-    	return null;
-    }
+    DataLoadResponse getData(DataStoreKey key);
     
     /**
      * delete data in storage
@@ -29,9 +25,7 @@ public class DataStore implements ProtoDataStore{
      * @param key
      * @return confirmation response
      */
-    public DataDeleteResponse deleteData(DataStoreKey key) {
-    	return null;
-    }
+    DataDeleteResponse deleteData(DataStoreKey key);
     
     /**
      * update data in storage
@@ -39,7 +33,6 @@ public class DataStore implements ProtoDataStore{
      * @param key
      * @return confirmation response
      */
-    public DataUpdateResponse updateData(DataStoreKey key) {
-    	return null;
-    }
+    DataUpdateResponse updateData(DataStoreKey key);
+    
 }

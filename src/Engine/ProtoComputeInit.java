@@ -23,5 +23,11 @@ public interface ProtoComputeInit {
      * Sends a user parsable data stream back to the user
      */
     public ProtoDataStream sendResponseToUser();
+
+    /**
+     * Sends a data storagre request and receives a data storage response
+     */
+    public AckToken dataStorageRequest(DataStorageRequest data);
+    
 }
 
