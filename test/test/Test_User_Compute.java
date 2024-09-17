@@ -17,7 +17,7 @@ public class Test_User_Compute {
 
 		
 		User testUser = new User();
-		testUser.prototype(mockData);
+		testUser.userInputProto(mockData);
 	}
 	
 	
