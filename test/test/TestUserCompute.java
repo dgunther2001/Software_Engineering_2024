@@ -12,7 +12,7 @@ import engine.userapi.UserDataStream;
 /**
  * Tests the internals of the user to controller API.
  */
-public class Test_User_Compute {
+public class TestUserCompute {
 	
 	/**
 	 * Smoke Test

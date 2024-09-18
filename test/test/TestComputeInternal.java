@@ -12,7 +12,7 @@ import engine.controller.Controller;
 /**
  * Test the coontroller to compute engine API.
  */
-public class Test_Compute_Internal {
+public class TestComputeInternal {
 	
 	/**
 	 * Smoke test.

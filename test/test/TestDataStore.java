@@ -13,7 +13,7 @@ import engine.dataapi.DataStream;
 /**
  * Tests the controller to data storage component of the API.
  */
-public class Test_DataStore {
+public class TestDataStore {
 
 	/*
 	 * Smoke test.
