@@ -1,13 +1,16 @@
 package engine.compute_api;
 
+/**
+ * The API that receives a request to the compute engine
+ */
 public class ComputeEngine implements ProtoCompute {
 
-    public ComputeAckToken receiveComputeRequest(ComputeEngineDataStream data) {
+    /**
+     * Receives a compute request from the controller
+     */
+    @Override
+    public ComputeEngineDataStream receiveComputeRequest(ComputeEngineDataStream data) {
         return null;
-    }
-
-    public void sendComputeResponse(ComputeEngineDataStream data) {
-
     }
 
 }

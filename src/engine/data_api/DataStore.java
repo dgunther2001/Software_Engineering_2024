@@ -1,15 +1,16 @@
 package engine.data_api;
 
+/**
+ * Receiving end of the data storage API.
+ */
 public class DataStore implements ProtoDataStore{
 
+    /**
+     * Receives a data request and processes it.
+     */
     @Override
-    public DataAckToken receiveDataRequest(DataStream data) {
+    public DataStream receiveDataRequest(DataStream data) {
         return null;
-    }
-
-    @Override
-    public void sendDataResponse(DataStream data) {
-
     }
 
     

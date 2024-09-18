@@ -1,8 +1,13 @@
 package engine.data_api;
 
+/**
+ * Prototype interface for the data storage API.
+ */
 public interface ProtoDataStore {
     
-    public DataAckToken receiveDataRequest(DataStream data);
+    /**
+     * Receives and processes data storage requests.
+     */
+    public DataStream receiveDataRequest(DataStream data);
 
-    public void sendDataResponse(DataStream data);
 }

@@ -1,29 +1,32 @@
 package test;
 
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 
-import engine.*;
+import engine.compute_api.ComputeEngine;
+import engine.compute_api.ComputeEngineDataStream;
+import engine.controller.Controller;
 
+/**
+ * Test the coontroller to compute engine API.
+ */
 public class Test_Compute_Internal {
 	
-	// add a comparable test for testInitToExec()
+	/**
+	 * Smoke test.
+	 */
 	@Test
-	public void testInitToExecAPI() throws Exception {
-	    ComputeEngineDataStream mockData = Mockito.mock(ComputeEngineDataStream.class);
-	
-	    ComputeInit testInit = new ComputeInit();
-	    testInit.sendComputeRequest(mockData);
-	}
-	
-	@Test
-	public void testExecToInitAPI() throws Exception {
+	public void controllerToCompute_API() throws Exception {
 		
-	    ComputeEngineDataStream mockData = Mockito.mock(ComputeEngineDataStream.class);
+	    Controller mockController = Mockito.mock(Controller.class);
+		when(mockController.sendComputeRequest(any(ComputeEngineDataStream.class))).thenReturn(null);
+		
+		ComputeEngineDataStream mockComputeEngineDataStream = Mockito.mock(ComputeEngineDataStream.class);
 
-		
-		ComputeExec testExec = new ComputeExec();
-		testExec.sendDataResponse(mockData);
+		ComputeEngine testComputeEngine = new ComputeEngine();
+		testComputeEngine.receiveComputeRequest(mockComputeEngineDataStream);
 	}
 	
 }

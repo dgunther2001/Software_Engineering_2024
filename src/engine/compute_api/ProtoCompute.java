@@ -1,9 +1,13 @@
 package engine.compute_api;
 
+/**
+ * The prototype for the compute engine api.
+ */
 public interface ProtoCompute {
 
-    public ComputeAckToken receiveComputeRequest(ComputeEngineDataStream data); 
+    /**
+     * Prototype for the receiving end of the Compute Engine.
+     */
+    public ComputeEngineDataStream receiveComputeRequest(ComputeEngineDataStream data); 
 
-    public void sendComputeResponse(ComputeEngineDataStream data);
-    
 }

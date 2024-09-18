@@ -1,23 +1,32 @@
 package test;
 
-import org.mockito.Mockito;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.any;
+import static org.mockito.ArgumentMatchers.any;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import engine.*;
+import engine.controller.Controller;
+import engine.user_api.User;
+import engine.user_api.UserDataStream;
 
+/**
+ * Tests the internals of the user to controller API.
+ */
 public class Test_User_Compute {
 	
-	// add testComputeToUser
-
+	/**
+	 * Smoke Test
+	 */
 	@Test
-	public void testUserToComputeAPI() throws Exception {
-	    DataStream mockData = Mockito.mock(DataStream.class);
-
+	public void userToController_API() throws Exception {
 		
-		User testUser = new User();
-		testUser.userInputProto(mockData);
+	    User mockUser = Mockito.mock(User.class);
+		when(mockUser.sendUserRequest(any(UserDataStream.class))).thenReturn(null);
+		
+		UserDataStream mockUserDataStream = Mockito.mock(UserDataStream.class);
+
+		Controller testController = new Controller();
+		testController.receiveUserRequest(mockUserDataStream);
 	}
 	
 	
