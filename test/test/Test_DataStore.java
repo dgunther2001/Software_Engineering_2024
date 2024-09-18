@@ -6,8 +6,9 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
 import engine.controller.Controller;
-import engine.data_api.DataStore;
-import engine.data_api.DataStream;
+import engine.dataapi.DataStore;
+import engine.dataapi.DataStream;
+
 
 /**
  * Tests the controller to data storage component of the API.

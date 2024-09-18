@@ -1,4 +1,4 @@
-package engine.compute_api;
+package engine.computeapi;
 
 /**
  * Acknowledgement token for compute request.

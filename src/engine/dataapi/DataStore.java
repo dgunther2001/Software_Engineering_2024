@@ -1,4 +1,4 @@
-package engine.data_api;
+package engine.dataapi;
 
 /**
  * Receiving end of the data storage API.

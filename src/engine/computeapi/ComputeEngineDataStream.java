@@ -1,4 +1,4 @@
-package engine.compute_api;
+package engine.computeapi;
 
 /**
  * The data stream passed between the controller and the compute engine.

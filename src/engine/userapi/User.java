@@ -1,4 +1,4 @@
-package engine.user_api;
+package engine.userapi;
 
 /**
  * Actual implementation of the user end of the API.

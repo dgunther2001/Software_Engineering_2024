@@ -1,4 +1,4 @@
-package engine.user_api;
+package engine.userapi;
 
 /**
  * The prototype user end of the user controller api

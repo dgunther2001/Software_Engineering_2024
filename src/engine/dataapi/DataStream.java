@@ -1,4 +1,4 @@
-package engine.data_api;
+package engine.dataapi;
 
 /**
  * Data stream passed to and from the controller and data storage.

@@ -1,8 +1,8 @@
 package engine.controller;
 
-import engine.compute_api.ComputeEngineDataStream;
-import engine.data_api.DataStream;
-import engine.user_api.UserDataStream;
+import engine.computeapi.ComputeEngineDataStream;
+import engine.dataapi.DataStream;
+import engine.userapi.UserDataStream;
 
 /**
  * Interface for the controller component to extend from.

@@ -6,8 +6,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
 import engine.controller.Controller;
-import engine.user_api.User;
-import engine.user_api.UserDataStream;
+import engine.userapi.User;
+import engine.userapi.UserDataStream;
 
 /**
  * Tests the internals of the user to controller API.

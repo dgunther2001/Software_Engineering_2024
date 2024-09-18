@@ -1,4 +1,4 @@
-package engine.user_api;
+package engine.userapi;
 
 /**
  * Prototype data sent between user and controller

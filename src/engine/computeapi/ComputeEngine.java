@@ -1,4 +1,4 @@
-package engine.compute_api;
+package engine.computeapi;
 
 /**
  * The API that receives a request to the compute engine

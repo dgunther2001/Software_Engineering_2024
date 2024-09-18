@@ -1,4 +1,4 @@
-package engine.user_api;
+package engine.userapi;
 
 /**
  * Internal acknowledgement token of the user API.

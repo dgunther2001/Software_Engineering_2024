@@ -1,4 +1,4 @@
-package engine.compute_api;
+package engine.computeapi;
 
 /**
  * The prototype for the compute engine api.

@@ -5,8 +5,8 @@ import static org.mockito.ArgumentMatchers.any;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import engine.compute_api.ComputeEngine;
-import engine.compute_api.ComputeEngineDataStream;
+import engine.computeapi.ComputeEngine;
+import engine.computeapi.ComputeEngineDataStream;
 import engine.controller.Controller;
 
 /**
