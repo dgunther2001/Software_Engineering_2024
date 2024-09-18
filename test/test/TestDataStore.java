@@ -15,7 +15,7 @@ import engine.dataapi.DataStream;
  */
 public class TestDataStore {
 
-	/*
+	/**
 	 * Smoke test.
 	 */
 	@Test
