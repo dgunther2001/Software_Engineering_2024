@@ -1,18 +1,26 @@
 package engine.controller;
 
-import engine.compute_api.ComputeEngineDataStream;
-import engine.user_api.UserDataStream;
-import engine.user_api.UserAckToken;
-import engine.data_api.DataAckToken;
-import engine.data_api.DataStream;
+import engine.computeapi.ComputeEngineDataStream;
+import engine.dataapi.DataStream;
+import engine.userapi.UserDataStream;
 
+/**
+ * Interface for the controller component to extend from.
+ */
 public interface ProtoController {
 
-    public UserAckToken receiveUserRequest(UserDataStream data); 
+    /**
+     * Receive and process a user request
+     */
+    public UserDataStream receiveUserRequest(UserDataStream data); 
 
-    public void sendUserResponse(UserDataStream data);
-
+    /**
+     * Send a compute request.
+     */
     public ComputeEngineDataStream sendComputeRequest(ComputeEngineDataStream data);
 
-    public DataAckToken sendDataStoreRequest(DataStream data);
+    /**
+     * Send a data storage request.
+     */
+    public DataStream sendDataStoreRequest(DataStream data);
 }
