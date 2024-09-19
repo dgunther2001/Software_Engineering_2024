@@ -10,6 +10,8 @@ public class User implements ProtoUser{
      */
     @Override
     public UserDataStream sendUserRequest(UserDataStream data) {
+    	// insantiate controller
+    	// UserDataStream returnData = controller.receiveDataStream(data);
         return null;
     }
 
