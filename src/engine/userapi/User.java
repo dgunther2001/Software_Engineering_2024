@@ -9,8 +9,9 @@ public class User implements ProtoUser{
      * Sends a user request to the controller
      */
     @Override
-    public UserDataStream sendUserRequest(UserDataStream data) {
+    public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
         return null;
     }
+
 
 }

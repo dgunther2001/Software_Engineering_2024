@@ -8,7 +8,7 @@ public interface ProtoUser {
     /**
      * Send a request to the controller
      */
-    public UserDataStream sendUserRequest(UserDataStream data);
+    public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data);
     // receiveUserRequest(data) function in the controller
     // do computations and send back response
 
