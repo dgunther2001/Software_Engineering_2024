@@ -12,5 +12,13 @@ public class ComputeEngine implements ProtoCompute {
     public ComputeEngineDataStream receiveComputeRequest(ComputeEngineDataStream data) {
         return null;
     }
+    
+    /**
+     * 
+     * @return Returns true if the user input is valid.
+     */
+    public boolean validateInput() {
+    	return false;
+    }
 
 }
