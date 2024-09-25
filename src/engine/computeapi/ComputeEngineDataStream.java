@@ -16,14 +16,23 @@ public class ComputeEngineDataStream implements ProtoComputeEngineDataStream{
 		numRectangles = numRect;
 	}
 	
+	/**
+	 * grabs the number of desired rectangles to compute
+	 */
 	public Integer getRectangles() {
 		return this.numRectangles;
 	}
 	
+	/**
+	 * Grabs the computed area (defaults to 0)
+	 */
 	public float getArea() {
 		return this.area;
 	}
 	
+	/**
+	 * Sets the area
+	 */
 	public void setArea(float newArea) {
 		area = newArea;
 	}

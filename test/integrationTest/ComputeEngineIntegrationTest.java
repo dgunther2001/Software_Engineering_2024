@@ -25,6 +25,9 @@ import infrastructure.IntegrationDataStore;//fake db
  */
 public class ComputeEngineIntegrationTest{
 
+	/**
+	 * A call to a compute engine integration test
+	 */
 	@Test
 	public void test() {
 		int[] arr = {1, 10, 25};
