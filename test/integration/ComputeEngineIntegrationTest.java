@@ -39,8 +39,9 @@ public class ComputeEngineIntegrationTest{
 		String realOutput = output.toString();
 		String expectedOutput = "1\n10\n25\n";
 		
-		if(realOutput != expectedOutput) fail();//the actual test
-		
+		if(realOutput != expectedOutput) {
+			fail();//the actual test
+		}
 		
 		
 	}
