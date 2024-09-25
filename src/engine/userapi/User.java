@@ -4,8 +4,8 @@ package engine.userapi;
  * Actual implementation of the user end of the API.
  */
 
-import engine.controller.*;
-import engine.userapi.*;
+import engine.controller.Controller;
+import engine.controller.ProtoController;
 import engine.dataapi.*;
 
 import java.util.List;

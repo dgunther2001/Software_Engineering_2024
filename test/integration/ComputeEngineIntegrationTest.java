@@ -1,4 +1,4 @@
-package integrationTest;
+package integration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import engine.userapi.*;
-import engine.controller.*;//real component
-import engine.computeapi.*;//another real component
+import engine.userapi.User;
+//import engine.controller.*;//real component
+//import engine.computeapi.*;//another real component
 import infrastructure.UserDataInput;//test data input
 import infrastructure.UserDataStream;//test output
 import infrastructure.IntegrationDataStore;//fake db
