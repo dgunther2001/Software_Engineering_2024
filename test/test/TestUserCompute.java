@@ -27,7 +27,7 @@ public class TestUserCompute {
 		
 		UserDataStream mockUserDataStream = (UserDataStream) Mockito.mock(UserDataStream.class);
 
-		Controller testController = new Controller();
+		Controller testController = new Controller(mockUser);
 		testController.receiveUserRequest(mockUserDataStream);
 	}
 	

@@ -1,27 +1,44 @@
 package engine.controller;
 
+
+//import engine.computeapi.ComputeEngine;
+import engine.computeapi.ProtoComputeEngineDataStream;
 import engine.computeapi.ComputeEngineDataStream;
-import engine.computeapi.ComputeEngine;
+import engine.userapi.User;
+import engine.userapi.ProtoUserDataStream;
+//import engine.dataapi.ProtoDataStream;
 import engine.dataapi.DataStream;
-import engine.userapi.UserDataStream;
 
 /**
  * The controller which acts as the nexus of all of our APIs
  */
 public class Controller implements ProtoController{
+	/**
+	 * Stores a user class
+	 */
+	User theUser;
 	
+	/**
+	 * Controller constructor
+	 */
+	public Controller(User user) {
+		this.theUser = user;
+	}
 	
     /**
      * Component that receives user requests.
      */
     @Override
-    public UserDataStream receiveUserRequest(UserDataStream data) {
+    public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
     	
     	// conversion logic from UserDataStream to ComputeEngineData Stream
     	// don't pass the value 10, pass the value actually want
     	// also need logic to split this into many many requests
-    	ComputeEngineDataStream individualStream = new ComputeEngineDataStream(10 /* CHANGE LATER*/);
-        ComputeEngineDataStream returnData =  sendComputeRequest(individualStream);
+    	while(data.getInput().iterator().hasNext()) {
+    		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(data.getInput().iterator().next());
+            ProtoComputeEngineDataStream returnData = sendComputeRequest(individualStream);
+            // send data storage request
+    	}
         
         // conversion logic to data store value
         // then send a data storage request
@@ -39,12 +56,9 @@ public class Controller implements ProtoController{
      * Component that sends a request to the Compute engine.
      */
     @Override
-    public ComputeEngineDataStream sendComputeRequest(ComputeEngineDataStream data) {	
-    	
-    	//TODO: access compute engine in the User
+    public ProtoComputeEngineDataStream sendComputeRequest(ProtoComputeEngineDataStream data) {	
     	// all we have to do is use the user engine instead
-    	ComputeEngine engine = new ComputeEngine();
-    	return engine.receiveComputeRequest(data);
+    	return theUser.getComputeEngine().receiveComputeRequest(data);
     }
 
     /**

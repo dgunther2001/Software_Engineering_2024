@@ -1,4 +1,4 @@
-package integrationTest;
+package integration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import engine.userapi.*;
-import engine.controller.*;//real component
-import engine.computeapi.*;//another real component
+import engine.userapi.User;
+//import engine.controller.*;//real component
+//import engine.computeapi.*;//another real component
 import infrastructure.UserDataInput;//test data input
 import infrastructure.UserDataStream;//test output
 import infrastructure.IntegrationDataStore;//fake db
@@ -25,6 +25,9 @@ import infrastructure.IntegrationDataStore;//fake db
  */
 public class ComputeEngineIntegrationTest{
 
+	/**
+	 * A call to a compute engine integration test
+	 */
 	@Test
 	public void test() {
 		int[] arr = {1, 10, 25};
@@ -36,8 +39,9 @@ public class ComputeEngineIntegrationTest{
 		String realOutput = output.toString();
 		String expectedOutput = "1\n10\n25\n";
 		
-		if(realOutput != expectedOutput) fail();//the actual test
-		
+		if(realOutput != expectedOutput) {
+			fail();//the actual test
+		}
 		
 		
 	}

@@ -9,7 +9,7 @@ public class ComputeEngine implements ProtoCompute {
      * Receives a compute request from the controller
      */
     @Override
-    public ComputeEngineDataStream receiveComputeRequest(ComputeEngineDataStream data) {
+    public ProtoComputeEngineDataStream receiveComputeRequest(ProtoComputeEngineDataStream data) {
         // function = x^2
     	// domain = 0 to 1
     	float rectWidth = 1 / data.getRectangles(); // width of rectangles based on domain and quantity
