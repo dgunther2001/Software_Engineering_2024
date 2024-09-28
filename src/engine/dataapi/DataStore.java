@@ -13,13 +13,7 @@ import java.io.ObjectOutputStream;
  */
 public class DataStore implements ProtoDataStore {
 	private DataStream data;
-	
-	/**
-	 * Constructor to be able to save values
-	 */
-	public DataStore(int d) {
-		data = new DataStream(new ArrayList<String>());	
-	}
+
 	
     /**
      * Receives a data request for output and processes it.
