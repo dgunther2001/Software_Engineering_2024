@@ -38,4 +38,10 @@ public interface ProtoUserDataStream {
 	 * Converts the output to a string
 	 */
 	public String toString();
+	
+	/**
+	 * Sets the entire output array
+	 * @param outputList
+	 */
+	public void setOutput(List<String> outputList);
 }

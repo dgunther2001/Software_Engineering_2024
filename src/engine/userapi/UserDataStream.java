@@ -39,6 +39,13 @@ public class UserDataStream implements ProtoUserDataStream{
 	}
 	
 	/**
+	 * Sets the output list
+	 */
+	public void setOutput(List<String> outputList) {
+		this.output = outputList;
+	}
+	
+	/**
 	 * The constructor that requires a list of integer inputs
 	 */
 	public UserDataStream(List<Integer> inputs) {

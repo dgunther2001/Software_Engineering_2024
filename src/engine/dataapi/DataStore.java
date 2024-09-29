@@ -29,6 +29,14 @@ public class DataStore implements ProtoDataStore {
 		
 	}
 	
+	/**
+	 * Spits out the list of data
+	 * @return
+	 */
+	public DataStream receiveUserOutRequest() {
+		return data;
+	}
+	
 	
     /**
      * Receives a data request for output and processes it.

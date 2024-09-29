@@ -21,6 +21,12 @@ public interface ProtoDataStore {
 	 * @return
 	 */
 	public void receiveDataStoreRequest(ProtoDataStream data);
+	
+	/**
+	 * Spits out the list of data
+	 * @return
+	 */
+	public ProtoDataStream receiveUserOutRequest();
 }
 
 

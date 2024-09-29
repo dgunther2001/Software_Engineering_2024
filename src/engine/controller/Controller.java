@@ -51,6 +51,9 @@ public class Controller implements ProtoController{
             // send data storage request
     	}
     	
+    	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
+    	data.setOutput(finalData.getData());
+    	
     	
         
         // conversion logic to data store value
