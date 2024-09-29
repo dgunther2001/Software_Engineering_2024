@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * An in memory implementation of the user data input
  */
-public class UserDataInput implements ProtoUserDataInput{
+public class TestUserDataInput implements ProtoUserDataInput{
     
 	/**
 	 * List containing the input list
@@ -17,7 +17,7 @@ public class UserDataInput implements ProtoUserDataInput{
     /**
      * Constructor
      */
-    public UserDataInput(int [] arr) {
+    public TestUserDataInput(int [] arr) {
     	for( int x : arr) {
     		input.add(x);
     	}

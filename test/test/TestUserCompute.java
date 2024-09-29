@@ -11,10 +11,12 @@ import engine.controller.Controller;
 import engine.userapi.User;
 import engine.userapi.UserDataStream;
 import engine.userapi.ProtoUserDataInput;
+
 import engine.computeapi.ComputeEngine;
-import engine.computeapi.ComputeEngineDataStream;
 import engine.dataapi.DataStore;
-import engine.dataapi.DataStream;
+import engine.computeapi.ComputeEngineDataStream;
+import engine.userapi.UserDataInput;
+
 
 
 /**
@@ -28,27 +30,15 @@ public class TestUserCompute {
 	@Test
 	public void userToController_API() throws Exception {
 		
-	    User mockUser = Mockito.mock(User.class);
-	    
-	    ComputeEngine mockComputeEngine = Mockito.mock(ComputeEngine.class);
-	    when(mockUser.getComputeEngine()).thenReturn(mockComputeEngine);
-	    
-		UserDataStream mockUserDataStream = (UserDataStream) Mockito.mock(UserDataStream.class);
-		when(mockUser.sendUserRequest(any(ProtoUserDataInput.class))).thenReturn(mockUserDataStream);
-		when(mockUserDataStream.getInput()).thenReturn(List.of(1, 3, 10));
+		Controller mockController = Mockito.mock(Controller.class);
 		
-	    ComputeEngineDataStream mockComputeEngineDataStream = Mockito.mock(ComputeEngineDataStream.class);
-	    when(mockComputeEngine.receiveComputeRequest(any(ComputeEngineDataStream.class))).thenReturn(mockComputeEngineDataStream);
-
-	    DataStore mockDataStore = Mockito.mock(DataStore.class);
-	    when(mockUser.getDataStore()).thenReturn(mockDataStore);
+		UserDataInput mockInput = Mockito.mock(UserDataInput.class);
+		when(mockInput.getList()).thenReturn(List.of(1, 3, 25));
+		
+	    User testUser = new User();
+	   
+	    testUser.sendUserRequest(mockInput);
 	    
-
-	    DataStream mockDataStream = Mockito.mock(DataStream.class);
-	    
-	    
-		Controller testController = new Controller(mockUser);
-		testController.receiveUserRequest(mockUserDataStream);
 	}
 	
 	
