@@ -24,7 +24,8 @@ public class TestComputeInternal {
 		when(mockController.sendComputeRequest(any(ComputeEngineDataStream.class))).thenReturn(null);
 		
 		ComputeEngineDataStream mockComputeEngineDataStream = Mockito.mock(ComputeEngineDataStream.class);
-
+		when(mockComputeEngineDataStream.getRectangles()).thenReturn(1);
+		
 		ComputeEngine testComputeEngine = new ComputeEngine();
 		testComputeEngine.receiveComputeRequest(mockComputeEngineDataStream);
 	}

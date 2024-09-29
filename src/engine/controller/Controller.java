@@ -3,10 +3,15 @@ package engine.controller;
 
 //import engine.computeapi.ComputeEngine;
 import engine.computeapi.ProtoComputeEngineDataStream;
+import java.util.Iterator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import engine.computeapi.ComputeEngineDataStream;
 import engine.userapi.User;
 import engine.userapi.ProtoUserDataStream;
-//import engine.dataapi.ProtoDataStream;
+import engine.dataapi.ProtoDataStream;
 import engine.dataapi.DataStream;
 
 /**
@@ -34,11 +39,30 @@ public class Controller implements ProtoController{
     	// conversion logic from UserDataStream to ComputeEngineData Stream
     	// don't pass the value 10, pass the value actually want
     	// also need logic to split this into many many requests
-    	while(data.getInput().iterator().hasNext()) {
+    	
+    	if (data.getInput() == null || !data.getInput().iterator().hasNext()) {
+    	    throw new IllegalArgumentException("Input data can;t be null");
+    	}
+    	
+    	Iterator<Integer> dataIt = data.getInput().iterator();
+    	while(dataIt.hasNext()) {
     		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(data.getInput().iterator().next());
             ProtoComputeEngineDataStream returnData = sendComputeRequest(individualStream);
+            List<String> dataConv = new ArrayList<String>();
+            Float currentArea = returnData.getArea();
+            dataConv.add(currentArea.toString());
+            ProtoDataStream toStore = new DataStream(dataConv);
+            
+            
+            sendDataStoreRequest(toStore);
+            dataIt.next();
             // send data storage request
     	}
+    	
+    	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
+    	data.setOutput(finalData.getData());
+    	return data;
+    	
         
         // conversion logic to data store value
         // then send a data storage request
@@ -49,7 +73,6 @@ public class Controller implements ProtoController{
         // place them into a List<String> 
         // return that value back to the user
         
-        return null;
     }
 
     /**
@@ -65,8 +88,8 @@ public class Controller implements ProtoController{
      * Component that sends request to the Data Storage component.
      */
     @Override
-    public DataStream sendDataStoreRequest(DataStream data) {
-        return null;
+    public void sendDataStoreRequest(ProtoDataStream data) {
+        theUser.getDataStore().receiveDataStoreRequest(data);
     }
 
 }

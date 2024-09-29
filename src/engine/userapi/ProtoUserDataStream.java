@@ -10,16 +10,6 @@ import java.util.List;
 public interface ProtoUserDataStream {
 	
 	/**
-	 * Input data
-	 */
-	List<Integer> input = new ArrayList<Integer>();
-	
-	/**
-	 * Output data
-	 */
-	List<String> output = new ArrayList<String>();
-	
-	/**
 	 * Grabs the input list
 	 */
 	public List<Integer> getInput();
@@ -38,4 +28,10 @@ public interface ProtoUserDataStream {
 	 * Converts the output to a string
 	 */
 	public String toString();
+	
+	/**
+	 * Sets the entire output array
+	 * @param outputList
+	 */
+	public void setOutput(List<String> outputList);
 }

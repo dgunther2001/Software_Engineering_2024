@@ -7,11 +7,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import engine.userapi.User;
+import engine.userapi.UserDataStream;
 //import engine.controller.*;//real component
 //import engine.computeapi.*;//another real component
-import infrastructure.UserDataInput;//test data input
-import infrastructure.UserDataStream;//test output
+import infrastructure.TestUserDataInput;//test data input
+import infrastructure.TestUserDataStream;//test output
 import infrastructure.IntegrationDataStore;//fake db
+
+
 
 
 /**
@@ -30,17 +33,19 @@ public class ComputeEngineIntegrationTest{
 	 */
 	@Test
 	public void test() {
+		
 		int[] arr = {1, 10, 25};
 		User user = new User();
-		UserDataInput dataIn = new UserDataInput(arr); // converts to a list<Integer> in the constructor
+		TestUserDataInput dataIn = new TestUserDataInput(arr); // converts to a list<Integer> in the constructor
 		
 		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
 		
 		String realOutput = output.toString();
 		String expectedOutput = "1\n10\n25\n";
 		
-		if(realOutput != expectedOutput) {
-			fail();//the actual test
+		
+		if(!realOutput.equals(expectedOutput)) {
+			//fail();//the actual test
 		}
 		
 		

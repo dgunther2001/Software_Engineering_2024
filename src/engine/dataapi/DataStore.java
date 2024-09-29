@@ -1,6 +1,7 @@
 package engine.dataapi;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,8 +13,37 @@ import java.io.ObjectOutputStream;
  * Receiving end of the data storage API.
  */
 public class DataStore implements ProtoDataStore {
+	
+	
+	/**
+	 * Holds the 
+	 */
 	private DataStream data;
-
+	
+	/**
+	 * Constructor method
+	 */
+	public DataStore() {
+		this.data = new DataStream(new ArrayList<>());
+	}
+	
+	/**
+	 * Actually receives an individual data storage request
+	 */
+	@Override
+	public void receiveDataStoreRequest(ProtoDataStream newData) {
+		data.append(newData);
+		
+	}
+	
+	/**
+	 * Spits out the list of data
+	 * @return
+	 */
+	public DataStream receiveUserOutRequest() {
+		return data;
+	}
+	
 	
     /**
      * Receives a data request for output and processes it.
@@ -23,7 +53,7 @@ public class DataStore implements ProtoDataStore {
      * @param file is the user-specified file
      */
     @Override
-    public DataStream receiveDataRequest(DataStream newData, String id, File file) {
+    public DataStream receiveDataOutputRequest(DataStream newData, String id, File file) {
         // search db or file for id
     	// if no make new db entry for current list and add value
     	// if yes append data to existing entry
@@ -46,8 +76,7 @@ public class DataStore implements ProtoDataStore {
     				 if(fileObject.getId() == id) {
     					  break;
     				 }
-    			 }
-    			 catch (IOException | ClassNotFoundException e) {
+    			 } catch (IOException | ClassNotFoundException e) {
     				 break;
     			 }
     		 }
@@ -55,14 +84,12 @@ public class DataStore implements ProtoDataStore {
     			 fileObject = newData;
     			 objOut.writeObject(fileObject);
     			 return fileObject;
-    		 }
-    		 else {//if a list was started add to it
+    		 } else {//if a list was started add to it
     			 fileObject.append(newData);
     			 objOut.writeObject(fileObject);
     			 return fileObject;
     		 }
-    	}
-    	catch (IOException e) {
+    	} catch (IOException e) {
     		e.printStackTrace();
     	}
     	

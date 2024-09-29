@@ -8,7 +8,7 @@ import engine.userapi.ProtoUserDataStream;
 /**
  * This is the data passed to and from the user to the controller
  */
-public class UserDataStream implements ProtoUserDataStream {
+public class TestUserDataStream implements ProtoUserDataStream {
 	
 	/**
 	 * Holds an input list
@@ -23,7 +23,7 @@ public class UserDataStream implements ProtoUserDataStream {
 	/**
 	 * Constructor
 	 */
-	public UserDataStream(List<Integer> inputs) {
+	public TestUserDataStream(List<Integer> inputs) {
 		this.input = inputs;
 	}
 	
@@ -64,4 +64,12 @@ public class UserDataStream implements ProtoUserDataStream {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Sets the output list
+	 */
+	@Override
+    public void setOutput(List<String> outputList) {
+        this.output = outputList;
+    }
 }

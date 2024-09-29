@@ -51,6 +51,14 @@ public class User implements ProtoUser{
 	public ProtoCompute getComputeEngine() {
 		return this.engine;
 	}
+	
+	/**
+	 * Allows us to grab the data store
+	 * @return
+	 */
+	public ProtoDataStore getDataStore() {
+		return this.dataStore;
+	}
 
     /**
      * Sends a user request to the controller
@@ -58,7 +66,7 @@ public class User implements ProtoUser{
     @Override
     public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
         List<Integer> rectangles = data.getList(); // grab the input list
-        UserDataStream inputStream = new UserDataStream(rectangles); // turn it into a user data stream
+        ProtoUserDataStream inputStream = new UserDataStream(rectangles); // turn it into a user data stream
         return sysctl.receiveUserRequest(inputStream); // call the controller an set the entry point there
     }
     
