@@ -51,6 +51,10 @@ public class User implements ProtoUser{
 	public ProtoCompute getComputeEngine() {
 		return this.engine;
 	}
+	
+	public ProtoDataStore getDataStore() {
+		return this.dataStore;
+	}
 
     /**
      * Sends a user request to the controller

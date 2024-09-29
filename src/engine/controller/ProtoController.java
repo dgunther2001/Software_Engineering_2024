@@ -3,6 +3,7 @@ package engine.controller;
 //import engine.computeapi.ComputeEngineDataStream;
 import engine.computeapi.ProtoComputeEngineDataStream;
 import engine.dataapi.DataStream;
+import engine.dataapi.ProtoDataStream;
 //import engine.userapi.UserDataStream;
 import engine.userapi.ProtoUserDataStream;
 //import engine.userapi.User;
@@ -25,5 +26,5 @@ public interface ProtoController {
     /**
      * Send a data storage request.
      */
-    public DataStream sendDataStoreRequest(DataStream data);
+    public void sendDataStoreRequest(ProtoDataStream data);
 }

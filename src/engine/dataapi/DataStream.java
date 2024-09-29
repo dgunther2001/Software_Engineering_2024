@@ -20,13 +20,13 @@ public class DataStream implements ProtoDataStream, Serializable{
     public DataStream(List<String> data) {
         this.data = data;
         id = UUID.randomUUID().toString();
-
     }
     
     /**
      * Append Data To List
      */
-    public DataStream append(DataStream newNum) {
+    @Override
+    public DataStream append(ProtoDataStream newNum) {
     	for(String str : newNum.getData()) {
     		data.add(str);
     	}

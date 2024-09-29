@@ -22,12 +22,12 @@ public class TestDataStore {
 	public void controllerToDataStore_API() throws Exception {
 		
 	    Controller mockController = Mockito.mock(Controller.class);
-		when(mockController.sendDataStoreRequest(any(DataStream.class))).thenReturn(null);
+		//when(mockController.sendDataStoreRequest(any(DataStream.class))).thenReturn(null);
 		
 		DataStream mockDataStream = Mockito.mock(DataStream.class);
 
 		DataStore testDataStore = new DataStore();
-		testDataStore.receiveDataRequest(mockDataStream);
+		testDataStore.receiveDataStoreRequest(mockDataStream);
 	}
 	
 }

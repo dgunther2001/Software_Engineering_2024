@@ -1,6 +1,7 @@
 package engine.dataapi;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,8 +13,22 @@ import java.io.ObjectOutputStream;
  * Receiving end of the data storage API.
  */
 public class DataStore implements ProtoDataStore {
+	
+	
+	/**
+	 * Holds the 
+	 */
 	private DataStream data;
-
+	
+	/**
+	 * Actually receives an individual data storage request
+	 */
+	@Override
+	public void receiveDataStoreRequest(ProtoDataStream newData) {
+		data.append(newData);
+		
+	}
+	
 	
     /**
      * Receives a data request for output and processes it.
@@ -23,7 +38,7 @@ public class DataStore implements ProtoDataStore {
      * @param file is the user-specified file
      */
     @Override
-    public DataStream receiveDataRequest(DataStream newData, String id, File file) {
+    public DataStream receiveDataOutputRequest(DataStream newData, String id, File file) {
         // search db or file for id
     	// if no make new db entry for current list and add value
     	// if yes append data to existing entry
