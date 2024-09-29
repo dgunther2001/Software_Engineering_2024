@@ -20,6 +20,7 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * Grabs the input array
 	 */
+	@Override
 	public List<Integer> getInput() {
 		return this.input;
 	}
@@ -27,6 +28,7 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * Grabs the output array
 	 */
+	@Override
 	public List<String> getOutput() {
 		return this.output;
 	}
@@ -34,15 +36,9 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * Allows us to append to the output array
 	 */
+	@Override
 	public void appendOutput(String newValue) {
 		output.add(newValue);
-	}
-	
-	/**
-	 * Sets the output list
-	 */
-	public void setOutput(List<String> outputList) {
-		this.output = outputList;
 	}
 	
 	/**
@@ -55,6 +51,7 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * Converts the output string list to a singular string
 	 */
+	@Override
 	public String toString() {
 		String retStr= "";
 		for(String listElement : output) {
@@ -62,4 +59,12 @@ public class UserDataStream implements ProtoUserDataStream{
 		}
 		return retStr;
 	}
+	
+	/**
+	 * Sets the output list
+	 */
+	@Override
+    public void setOutput(List<String> outputList) {
+        this.output = outputList;
+    }
 }

@@ -26,11 +26,10 @@ public class DataStream implements ProtoDataStream, Serializable{
      * Append Data To List
      */
     @Override
-    public DataStream append(ProtoDataStream newNum) {
+    public void append(ProtoDataStream newNum) {
     	for(String str : newNum.getData()) {
     		data.add(str);
     	}
-    	return this;
     }
 
     /**

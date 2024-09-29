@@ -13,7 +13,7 @@ public interface ProtoDataStream {
     /**
      * Append Data To List
      */
-    public ProtoDataStream append(ProtoDataStream newNum);
+    public void append(ProtoDataStream newNum);
 
     /**
      * Data Getter

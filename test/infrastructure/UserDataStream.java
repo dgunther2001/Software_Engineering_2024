@@ -64,4 +64,12 @@ public class UserDataStream implements ProtoUserDataStream {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Sets the output list
+	 */
+	@Override
+    public void setOutput(List<String> outputList) {
+        this.output = outputList;
+    }
 }

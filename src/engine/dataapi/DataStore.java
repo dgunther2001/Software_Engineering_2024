@@ -21,6 +21,13 @@ public class DataStore implements ProtoDataStore {
 	private DataStream data;
 	
 	/**
+	 * Constructor method
+	 */
+	public DataStore() {
+		this.data = new DataStream(new ArrayList<>());
+	}
+	
+	/**
 	 * Actually receives an individual data storage request
 	 */
 	@Override

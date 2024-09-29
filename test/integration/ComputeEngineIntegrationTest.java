@@ -30,6 +30,7 @@ public class ComputeEngineIntegrationTest{
 	 */
 	@Test
 	public void test() {
+		
 		int[] arr = {1, 10, 25};
 		User user = new User();
 		UserDataInput dataIn = new UserDataInput(arr); // converts to a list<Integer> in the constructor
@@ -38,6 +39,7 @@ public class ComputeEngineIntegrationTest{
 		
 		String realOutput = output.toString();
 		String expectedOutput = "1\n10\n25\n";
+		
 		
 		if(realOutput != expectedOutput) {
 			fail();//the actual test
