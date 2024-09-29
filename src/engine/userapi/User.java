@@ -52,6 +52,10 @@ public class User implements ProtoUser{
 		return this.engine;
 	}
 	
+	/**
+	 * Allows us to grab the data store
+	 * @return
+	 */
 	public ProtoDataStore getDataStore() {
 		return this.dataStore;
 	}

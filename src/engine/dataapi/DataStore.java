@@ -61,8 +61,7 @@ public class DataStore implements ProtoDataStore {
     				 if(fileObject.getId() == id) {
     					  break;
     				 }
-    			 }
-    			 catch (IOException | ClassNotFoundException e) {
+    			 } catch (IOException | ClassNotFoundException e) {
     				 break;
     			 }
     		 }
@@ -70,14 +69,12 @@ public class DataStore implements ProtoDataStore {
     			 fileObject = newData;
     			 objOut.writeObject(fileObject);
     			 return fileObject;
-    		 }
-    		 else {//if a list was started add to it
+    		 } else {//if a list was started add to it
     			 fileObject.append(newData);
     			 objOut.writeObject(fileObject);
     			 return fileObject;
     		 }
-    	}
-    	catch (IOException e) {
+    	} catch (IOException e) {
     		e.printStackTrace();
     	}
     	
