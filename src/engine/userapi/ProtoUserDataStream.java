@@ -1,6 +1,5 @@
 package engine.userapi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,4 +33,10 @@ public interface ProtoUserDataStream {
 	 * @param outputList
 	 */
 	public void setOutput(List<String> outputList);
+
+	/**
+	 * Grabs the delimiter
+	 * @return
+	 */
+	public char getDelimiter();
 }
