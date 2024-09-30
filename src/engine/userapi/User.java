@@ -65,7 +65,7 @@ public class User implements ProtoUser{
     @Override
     public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
         List<Integer> rectangles = data.getList(); // grab the input list
-        ProtoUserDataStream inputStream = new UserDataStream(rectangles,'\n'); // turn it into a user data stream
+        ProtoUserDataStream inputStream = new UserDataStream(rectangles,data.getDelimiter()); // turn it into a user data stream
         return sysctl.receiveUserRequest(inputStream); // call the controller an set the entry point there
     }
     
