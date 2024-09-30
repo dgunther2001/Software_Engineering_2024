@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * The base user class
  */
-public class User implements ProtoUser{
+public class User extends ProtoUserDataInput implements ProtoUser {
 	
 	/**
 	 * Holds the controller

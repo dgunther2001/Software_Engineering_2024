@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * user input data
  */
-public interface ProtoUserDataInput {
+public abstract class ProtoUserDataInput {
 	/**
 	 * Holds an array of computations
 	 */
@@ -14,5 +14,7 @@ public interface ProtoUserDataInput {
 	/**
 	 * Grabs the list
 	 */
-	public List<Integer> getList();
+	public List<Integer> getList() {
+		return this.inputRectangleNumbers;
+	}
 }
