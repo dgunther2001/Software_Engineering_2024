@@ -16,6 +16,11 @@ public class UserDataStream implements ProtoUserDataStream{
 	 * output list of strings
 	 */
 	List<String> output = new ArrayList<String>();
+
+	/**
+	 * Holds the delimiter
+	 */
+	char delimiter; 
 	
 	/**
 	 * Grabs the input array
@@ -44,8 +49,9 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * The constructor that requires a list of integer inputs
 	 */
-	public UserDataStream(List<Integer> inputs) {
+	public UserDataStream(List<Integer> inputs, char delimiter) {
 		this.input = inputs;
+		this.delimiter = delimiter;
 	}
 	
 	/**
@@ -67,4 +73,12 @@ public class UserDataStream implements ProtoUserDataStream{
     public void setOutput(List<String> outputList) {
         this.output = outputList;
     }
+
+	/**
+	 * grabs the delimiter
+	 */
+	@Override
+	public char getDelimiter() {
+		return this.delimiter;
+	}
 }

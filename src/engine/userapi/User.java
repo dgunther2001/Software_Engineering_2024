@@ -4,15 +4,14 @@ package engine.userapi;
  * Actual implementation of the user end of the API.
  */
 
+import java.util.List;
+
+import engine.computeapi.ComputeEngine;
+import engine.computeapi.ProtoCompute;
 import engine.controller.Controller;
 import engine.controller.ProtoController;
-import engine.computeapi.ProtoCompute;
-import engine.computeapi.ComputeEngine;
-import engine.dataapi.ProtoDataStore;
 import engine.dataapi.DataStore;
-//import engine.dataapi.*;
-
-import java.util.List;
+import engine.dataapi.ProtoDataStore;
 
 //import engine.computeapi.*;
 
@@ -66,7 +65,7 @@ public class User implements ProtoUser{
     @Override
     public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
         List<Integer> rectangles = data.getList(); // grab the input list
-        ProtoUserDataStream inputStream = new UserDataStream(rectangles); // turn it into a user data stream
+        ProtoUserDataStream inputStream = new UserDataStream(rectangles,data.getDelimiter()); // turn it into a user data stream
         return sysctl.receiveUserRequest(inputStream); // call the controller an set the entry point there
     }
     

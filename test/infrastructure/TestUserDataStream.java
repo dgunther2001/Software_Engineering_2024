@@ -19,12 +19,18 @@ public class TestUserDataStream implements ProtoUserDataStream {
 	 * Holds an output list
 	 */
 	List<String> output = new ArrayList<String>();
+
+	/**
+	 * The delimiter
+	 */
+	char delimiter;
 	
 	/**
 	 * Constructor
 	 */
-	public TestUserDataStream(List<Integer> inputs) {
+	public TestUserDataStream(List<Integer> inputs, char delimiter) {
 		this.input = inputs;
+		this.delimiter = delimiter;
 	}
 	
 	/**
@@ -72,4 +78,12 @@ public class TestUserDataStream implements ProtoUserDataStream {
     public void setOutput(List<String> outputList) {
         this.output = outputList;
     }
+
+	/**
+	 * Returns the delimiter
+	 */
+	@Override
+	public char getDelimiter() {
+		return this.delimiter;
+	}
 }

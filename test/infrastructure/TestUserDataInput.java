@@ -13,14 +13,21 @@ public class TestUserDataInput implements ProtoUserDataInput{
 	 * List containing the input list
 	 */
     List<Integer> input = new ArrayList<Integer>();
+
+	/**
+	 * Delimiter
+	 * 
+	 */
+	char delimiter = '\n';
     
     /**
      * Constructor
      */
-    public TestUserDataInput(int [] arr) {
+    public TestUserDataInput(int [] arr, char delimiter) {
     	for( int x : arr) {
     		input.add(x);
     	}
+		this.delimiter = delimiter;
     }
 
     /**
@@ -29,5 +36,13 @@ public class TestUserDataInput implements ProtoUserDataInput{
 	@Override
 	public List<Integer> getList() {
 		return this.input;
+	}
+
+	/**
+	 * Returns the delimiter
+	 */
+	@Override
+	public char getDelimiter() {
+		return this.delimiter;
 	}
 }

@@ -11,6 +11,8 @@ public class UserDataInput implements ProtoUserDataInput{
 	 */
     List<Integer> inputRectangleNumbers;
     
+    char delimiter; // holds the delimiter value
+
     /**
      * Grabs the list of rectangle numbers
      */
@@ -18,4 +20,8 @@ public class UserDataInput implements ProtoUserDataInput{
     public List<Integer> getList() {
     	return inputRectangleNumbers;
     }
+
+    public char getDelimiter() {
+		return this.delimiter;
+	}
 }

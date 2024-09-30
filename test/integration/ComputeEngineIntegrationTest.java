@@ -36,7 +36,7 @@ public class ComputeEngineIntegrationTest{
 		
 		int[] arr = {1, 10, 25};
 		User user = new User();
-		TestUserDataInput dataIn = new TestUserDataInput(arr); // converts to a list<Integer> in the constructor
+		TestUserDataInput dataIn = new TestUserDataInput(arr, '\n'); // converts to a list<Integer> in the constructor
 		
 		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
 		

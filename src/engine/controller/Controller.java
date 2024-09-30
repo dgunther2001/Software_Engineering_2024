@@ -41,7 +41,7 @@ public class Controller implements ProtoController{
     	// also need logic to split this into many many requests
     	
     	if (data.getInput() == null || !data.getInput().iterator().hasNext()) {
-    	    throw new IllegalArgumentException("Input data can;t be null");
+    	    throw new IllegalArgumentException("Input data can't be null");
     	}
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
