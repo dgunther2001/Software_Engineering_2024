@@ -64,7 +64,13 @@ public class User implements ProtoUser{
      */
     @Override
     public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
+
         List<Integer> rectangles = data.getList(); // grab the input list
+        
+        if (rectangles.size() <= 0) {
+        	throw new IllegalArgumentException("Invalid Number of User Inputs Specified (List Length <= 0)");
+        }
+        
         ProtoUserDataStream inputStream = new UserDataStream(rectangles,data.getDelimiter()); // turn it into a user data stream
         return sysctl.receiveUserRequest(inputStream); // call the controller an set the entry point there
     }
