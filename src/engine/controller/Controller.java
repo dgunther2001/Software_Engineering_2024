@@ -81,6 +81,9 @@ public class Controller implements ProtoController{
     @Override
     public ProtoComputeEngineDataStream sendComputeRequest(ProtoComputeEngineDataStream data) {	
     	// all we have to do is use the user engine instead
+    	if (data.getRectangles() <= 0) {
+    		throw new IllegalArgumentException("Number of rectangles should be greater than or equal to 0.");
+    	}
     	return theUser.getComputeEngine().receiveComputeRequest(data);
     }
 
