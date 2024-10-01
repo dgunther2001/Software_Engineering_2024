@@ -1,6 +1,12 @@
 package integration;
 
 import org.junit.jupiter.api.Test;
+
+import engine.dataapi.DataStore;
+import engine.userapi.UserDataStream;
+import infrastructure.IntegrationUser;
+import infrastructure.TestUserDataInput;
+
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
@@ -17,5 +23,17 @@ public class DataStoreIntegration {
 	@Test
 	public void test() {
 		
+		int[] arr = {1, 10, 25};
+		IntegrationUser user =  new IntegrationUser(new DataStore());
+		TestUserDataInput dataIn = new TestUserDataInput(arr, '\n');
+		
+		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
+		
+		String realOutput = output.toString();
+		String expectedOutput = "1.0\n10.0\n25.0\n";
+		
+		if(!realOutput.equals(expectedOutput)) {
+			fail();//the actual test
+		}
 	}
 }

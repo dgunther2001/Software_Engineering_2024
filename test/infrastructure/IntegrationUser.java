@@ -48,6 +48,11 @@ public class IntegrationUser implements ProtoUser{
 			engine = compute;
 			dataStore = (ProtoDataStore) new IntegrationDataStore();
 		}	
+		/**
+		 * Instantiates real controller and real datastore
+		 * uses fake compute engine
+		 * @param store
+		 */
 		public IntegrationUser(ProtoDataStore store) {
 			sysctl = new Controller(this);
 			engine = new IntegrationComputeEngine();
