@@ -15,10 +15,16 @@ public interface ProtoUser {
     // receiveUserRequest(data) function in the controller
     // do computations and send back response
 
-    
+    /**
+     * getter for the compute engine from user object
+     * @return
+     */
 	public ProtoCompute getComputeEngine();
 
-
+/**
+ * getter for the dataStore from User object
+ * @return
+ */
 	public ProtoDataStore getDataStore();
 
 
