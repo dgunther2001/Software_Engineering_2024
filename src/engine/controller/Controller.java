@@ -10,6 +10,7 @@ import java.util.List;
 
 import engine.computeapi.ComputeEngineDataStream;
 import engine.userapi.User;
+import engine.userapi.ProtoUser;
 import engine.userapi.ProtoUserDataStream;
 import engine.dataapi.ProtoDataStream;
 import engine.dataapi.DataStream;
@@ -21,12 +22,12 @@ public class Controller implements ProtoController{
 	/**
 	 * Stores a user class
 	 */
-	User theUser;
+	ProtoUser theUser;
 	
 	/**
 	 * Controller constructor
 	 */
-	public Controller(User user) {
+	public Controller(ProtoUser user) {
 		this.theUser = user;
 	}
 	
@@ -46,7 +47,7 @@ public class Controller implements ProtoController{
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
     	while(dataIt.hasNext()) {
-    		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(data.getInput().iterator().next());
+    		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(dataIt.next());
             ProtoComputeEngineDataStream returnData = sendComputeRequest(individualStream);
             List<String> dataConv = new ArrayList<String>();
             Float currentArea = returnData.getArea();
@@ -66,7 +67,7 @@ public class Controller implements ProtoController{
             
             
             sendDataStoreRequest(toStore);
-            dataIt.next();
+             //dataIt.next();
             // send data storage request
     	}
     	
