@@ -16,7 +16,7 @@ public class DataStore implements ProtoDataStore {
 	
 	
 	/**
-	 * Holds the 
+	 * Holds the data
 	 */
 	private DataStream data;
 	

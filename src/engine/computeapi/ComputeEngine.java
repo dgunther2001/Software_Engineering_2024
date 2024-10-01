@@ -16,8 +16,8 @@ public class ComputeEngine implements ProtoCompute {
     		throw new IllegalArgumentException("Num args have to be > 0");
     	}
     	
-    	float rectWidth = 1 / data.getRectangles(); // width of rectangles based on domain and quantity
-    	float currentXVal = 0; // current x value on the domain
+    	float rectWidth = (float) (1.0 / (float)data.getRectangles()); // width of rectangles based on domain and quantity
+    	float currentXVal = rectWidth; // current x value on the domain
     	double outputArea = 0; // the current cumulative area
     	
     	// iterate over the number of rectangles
