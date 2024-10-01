@@ -92,6 +92,9 @@ public class Controller implements ProtoController{
      */
     @Override
     public void sendDataStoreRequest(ProtoDataStream data) {
+    	if (data.getData().size() != 1) {
+    		throw new IllegalArgumentException("Data specified to pass to data store is not a length==1 arraylist of strings.");
+    	}
         theUser.getDataStore().receiveDataStoreRequest(data);
     }
 
