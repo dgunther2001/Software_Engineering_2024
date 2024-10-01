@@ -50,7 +50,18 @@ public class Controller implements ProtoController{
             ProtoComputeEngineDataStream returnData = sendComputeRequest(individualStream);
             List<String> dataConv = new ArrayList<String>();
             Float currentArea = returnData.getArea();
-            dataConv.add(currentArea.toString());
+            
+            try {
+            	String dataConvAdd = currentArea.toString();
+            	dataConv.add(dataConvAdd);
+            } catch (Exception e) {
+            	System.out.println("Floating point data unable to convert to string for storage.");
+            	e.printStackTrace();
+            }
+           
+            if (dataConv.size() != 1) {
+            	throw new IllegalStateException("Output of compute engine is invalud size.");
+            }
             ProtoDataStream toStore = new DataStream(dataConv);
             
             
