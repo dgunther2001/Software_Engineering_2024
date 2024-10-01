@@ -60,6 +60,9 @@ public class Controller implements ProtoController{
     	}
     	
     	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
+    	if (finalData.getData().size() != data.getInput().size()) {
+    		throw new IllegalStateException("Input array size doesn't match output array size.");
+    	}
     	data.setOutput(finalData.getData());
     	return data;
     	
