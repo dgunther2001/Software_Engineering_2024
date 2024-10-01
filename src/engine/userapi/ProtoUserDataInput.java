@@ -21,5 +21,9 @@ public interface ProtoUserDataInput {
 	 */
 	public List<Integer> getList();
 
+	/**
+	 * Grabs the delimiter
+	 * @return
+	 */
 	public char getDelimiter();
 }
