@@ -29,18 +29,24 @@ public class DataStore implements ProtoDataStore {
 	
 	/**
 	 * Actually receives an individual data storage request
+	 * @throws Exception 
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData) {
+	public void receiveDataStoreRequest(ProtoDataStream newData) throws Exception {
+		if(newData.getData().equals(null)) {
+			throw new Exception("Data cannot be null");
+		} 
 		data.append(newData);
-		
 	}
 	
 	/**
 	 * Spits out the list of data
 	 * @return
 	 */
-	public DataStream receiveUserOutRequest() {
+	public DataStream receiveUserOutRequest() throws Exception {
+		if(this.data == null) {
+			throw new Exception("The list is empty");
+		}
 		return data;
 	}
 	
