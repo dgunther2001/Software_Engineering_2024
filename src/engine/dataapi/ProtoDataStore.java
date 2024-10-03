@@ -19,14 +19,16 @@ public interface ProtoDataStore {
 	 * Request to store data
 	 * @param data
 	 * @return
+	 * @throws Exception 
 	 */
-	public void receiveDataStoreRequest(ProtoDataStream data);
+	public void receiveDataStoreRequest(ProtoDataStream data) throws Exception;
 	
 	/**
 	 * Spits out the list of data
 	 * @return
+	 * @throws Exception 
 	 */
-	public ProtoDataStream receiveUserOutRequest();
+	public ProtoDataStream receiveUserOutRequest() throws Exception;
 }
 
 
