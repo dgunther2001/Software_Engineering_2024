@@ -8,6 +8,7 @@ import infrastructure.IntegrationUser;
 import infrastructure.TestUserDataInput;
 
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * to test the 2 DataStore component and controller and the api between them
@@ -39,5 +40,25 @@ public class DataStoreIntegration {
 		if(!realOutput.equals(expectedOutput)) {
 			fail();//the actual test
 		}
+	}
+	
+	/**
+	 * Integration test to ensure an exception is thrown for invalid input
+	 * the User api is throwing the exception 
+	 */
+	@Test
+	public void testExceptions() {
+		int[] arr = {};
+		IntegrationUser user =  new IntegrationUser(new DataStore());
+		//TestUserDataInput dataIn = new TestUserDataInput(arr, '\n');
+		TestUserDataInput dataIn = null;
+		
+		boolean throwsException = false;
+		try {
+		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
+		}catch(Throwable e) {
+			throwsException = true;
+		}
+		assertTrue(throwsException);
 	}
 }

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import engine.computeapi.ComputeEngine;
 import engine.controller.Controller;
+import engine.dataapi.DataStore;
 import engine.userapi.User;
 import engine.userapi.UserDataStream;
 //import engine.controller.*;//real component
@@ -51,6 +54,28 @@ public class ComputeEngineIntegrationTest{
 			fail();//the actual test
 		}
 		
-		
 	}
+	
+	/**
+	 * ensure exception is thrown
+	 * 
+	 * user api is throwing it
+	 */
+	@Test
+	public void testExceptions() {
+		int[] arr = {};
+		IntegrationUser user =  new IntegrationUser(new ComputeEngine());
+		TestUserDataInput dataIn = new TestUserDataInput(arr, '\n');
+		//TestUserDataInput dataIn = null;
+		
+		boolean throwsException = false;
+		try {
+		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
+		}catch(Throwable e) {
+			throwsException = true;
+		}
+		assertTrue(throwsException);
+	}
+	
+	
 }
