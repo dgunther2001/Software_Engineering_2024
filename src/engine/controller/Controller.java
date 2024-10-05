@@ -55,9 +55,9 @@ public class Controller implements ProtoController{
             try {
             	String dataConvAdd = currentArea.toString();
             	dataConv.add(dataConvAdd);
-            } catch (Exception e) {
+            } catch (Throwable t) {
             	System.out.println("Floating point data unable to convert to string for storage.");
-            	e.printStackTrace();
+            	t.printStackTrace();
             }
             
             if (dataConv.size() != 1) {
@@ -71,12 +71,17 @@ public class Controller implements ProtoController{
             // send data storage request
     	}
     	
-    	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
-    	if (finalData.getData().size() != data.getInput().size()) {
-    		throw new IllegalStateException("Input array size doesn't match output array size.");
+    	try {
+	    	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
+	    	if (finalData.getData().size() != data.getInput().size()) {
+	    		throw new IllegalStateException("Input array size doesn't match output array size.");
+	    	}
+	    	data.setOutput(finalData.getData());
+	    	return data;
+    	} catch (Throwable t) {
+    		t.printStackTrace();
+    		return null;
     	}
-    	data.setOutput(finalData.getData());
-    	return data;
     	
         
         // conversion logic to data store value
@@ -95,11 +100,16 @@ public class Controller implements ProtoController{
      */
     @Override
     public ProtoComputeEngineDataStream sendComputeRequest(ProtoComputeEngineDataStream data) {	
-    	// all we have to do is use the user engine instead
-    	if (data.getRectangles() <= 0) {
-    		throw new IllegalArgumentException("Number of rectangles should be greater than or equal to 0.");
+    	try {
+	    	// all we have to do is use the user engine instead
+	    	if (data.getRectangles() <= 0) {
+	    		throw new IllegalArgumentException("Number of rectangles should be greater than or equal to 0.");
+	    	}
+	    	return theUser.getComputeEngine().receiveComputeRequest(data);
+    	} catch (Throwable t) {
+    		t.printStackTrace();
+    		return null;
     	}
-    	return theUser.getComputeEngine().receiveComputeRequest(data);
     }
 
     /**
@@ -107,10 +117,14 @@ public class Controller implements ProtoController{
      */
     @Override
     public void sendDataStoreRequest(ProtoDataStream data) {
-    	if (data.getData().size() != 1) {
-    		throw new IllegalArgumentException("Data specified to pass to data store is not a length==1 arraylist of strings.");
+    	try {
+	    	if (data.getData().size() != 1) {
+	    		throw new IllegalArgumentException("Data specified to pass to data store is not a length==1 arraylist of strings.");
+	    	}
+	        theUser.getDataStore().receiveDataStoreRequest(data);
+    	} catch (Throwable t) {
+    		t.printStackTrace();
     	}
-        theUser.getDataStore().receiveDataStoreRequest(data);
     }
 
 }
