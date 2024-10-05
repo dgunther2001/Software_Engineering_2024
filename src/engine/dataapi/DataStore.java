@@ -41,6 +41,9 @@ public class DataStore implements ProtoDataStore {
 	 * @return
 	 */
 	public DataStream receiveUserOutRequest() {
+		if (data.getData().size() <= 0 || data == null) {
+			throw new IllegalStateException("No data to return");
+		}
 		return data;
 	}
 	
