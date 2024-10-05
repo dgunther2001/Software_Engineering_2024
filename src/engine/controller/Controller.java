@@ -41,7 +41,7 @@ public class Controller implements ProtoController{
     	// don't pass the value 10, pass the value actually want
     	// also need logic to split this into many many requests
     	
-    	if (data.getInput() == null || !data.getInput().iterator().hasNext()) {
+    	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
     	}
     	
@@ -59,7 +59,7 @@ public class Controller implements ProtoController{
             	System.out.println("Floating point data unable to convert to string for storage.");
             	e.printStackTrace();
             }
-           
+            
             if (dataConv.size() != 1) {
             	throw new IllegalStateException("Output of compute engine is invalud size.");
             }

@@ -32,9 +32,6 @@ public class DataStore implements ProtoDataStore {
 	 */
 	@Override
 	public void receiveDataStoreRequest(ProtoDataStream newData) {
-		if (newData.getData().size() != 1 || newData == null) {
-			throw new IllegalStateException("Expected an Array of size 1 passed to data storage request.");
-		}
 		data.append(newData);
 		
 	}

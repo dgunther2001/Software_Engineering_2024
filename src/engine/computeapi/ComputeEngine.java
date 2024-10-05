@@ -12,7 +12,7 @@ public class ComputeEngine implements ProtoCompute {
     public ProtoComputeEngineDataStream receiveComputeRequest(ProtoComputeEngineDataStream data) {
         // function = x^2
     	// domain = 0 to 1
-    	if (data.getRectangles() <= 0) {
+    	if (data.getRectangles() <= 0 || data == null) {
     		throw new IllegalArgumentException("Num args have to be > 0");
     	}
     	
