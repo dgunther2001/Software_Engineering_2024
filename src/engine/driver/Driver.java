@@ -37,7 +37,11 @@ public class Driver {
         List<Integer> inputIntegers = new ArrayList<>();
         
         for(String s : inputIntegersAsString) {
+        	try {
         	inputIntegers.add(Integer.valueOf(s));
+        	} catch (Throwable t) {
+        		t.printStackTrace();
+        	}
         }
         
         UserDataInput data = new UserDataInput(delim, inputIntegers);
