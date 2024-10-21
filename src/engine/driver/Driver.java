@@ -16,7 +16,7 @@ import engine.userapi.UserDataStream;
 /**
  * 
  */
-public class driver {
+public class Driver {
 	/**
 	 * 
 	 * @param args
