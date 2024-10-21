@@ -27,4 +27,13 @@ public class UserDataInput implements ProtoUserDataInput{
     public char getDelimiter() {
 		return this.delimiter;
 	}
+    
+    /**
+     * 
+     */
+    public UserDataInput(char delim, List<Integer> rects) {
+    	inputRectangleNumbers = rects;
+    	delimiter = delim;
+    }
+    
 }
