@@ -67,6 +67,9 @@ public class DataStore implements ProtoDataStore {
 		return; 
 	}
 	
+	/**
+	 * Reads the input data from a file
+	 */
 	public UserDataStream readInputData(String filePathIn, char delim, String filePathOut) {
 		String content = "";
         try {

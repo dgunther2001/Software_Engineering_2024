@@ -53,6 +53,9 @@ public class IntegrationDataStore implements ProtoDataStore{
 		return data;
 	}
 
+	/**
+	 * Irrelevant for the integration test
+	 */
 	@Override
 	public void receiveUserOutRequest(String filePath, char delim) {
 		// TODO Auto-generated method stub
@@ -60,12 +63,18 @@ public class IntegrationDataStore implements ProtoDataStore{
 	}
 
 
+	/**
+	 * Irrelevant for the integration test
+	 */
 	@Override
 	public UserDataStream readInputData(String filePath, char delim, String filePathOut) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	/**
+	 * Spits out the data as a string
+	 */
 	public String toString() {
 		String retStr= "";
 		for(String listElement : data.getData()) {

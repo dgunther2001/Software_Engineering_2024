@@ -27,6 +27,10 @@ import engine.dataapi.ProtoDataStore;
  */
 public class Controller implements ProtoController{
 	
+	/**
+	 * Data storage constructor takes in a data storage device
+	 * @param ds
+	 */
 	public Controller(ProtoDataStore ds) {
 		this.dataStorage = ds;
 	}
