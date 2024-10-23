@@ -59,8 +59,9 @@ public class IntegrationDataStore implements ProtoDataStore{
 		
 	}
 
+
 	@Override
-	public UserDataStream readInputData(String filePath, char delim) {
+	public UserDataStream readInputData(String filePath, char delim, String filePathOut) {
 		// TODO Auto-generated method stub
 		return null;
 	}

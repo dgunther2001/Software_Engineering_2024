@@ -16,18 +16,28 @@ import org.junit.jupiter.api.Test;
 import engine.controller.Controller;
 import engine.dataapi.DataStore;
 
+/**
+ * 
+ */
 public class TestMultiUser {
 	
 	// TODO 1: change the type of this variable to the name you're using for your
 	// User <-> ComputeEngine API
 	private Controller coordinator;
 	
+	/**
+	 * 
+	 */
 	@BeforeEach
 	public void initializeComputeEngine() {
 		DataStore dataStorage = new DataStore();
 		coordinator = new Controller(dataStorage);
 	}
 
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void compareMultiAndSingleThreaded() throws Exception {
 		int nThreads = 4;
@@ -73,6 +83,13 @@ public class TestMultiUser {
 		Assert.assertEquals(singleThreaded, multiThreaded);
 	}
 
+	/**
+	 * 
+	 * @param prefix
+	 * @param nThreads
+	 * @return
+	 * @throws IOException
+	 */
 	private List<String> loadAllOutput(String prefix, int nThreads) throws IOException {
 		List<String> result = new ArrayList<>();
 		for (int i = 0; i < nThreads; i++) {

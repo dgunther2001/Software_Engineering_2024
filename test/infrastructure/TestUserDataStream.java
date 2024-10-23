@@ -86,4 +86,10 @@ public class TestUserDataStream implements ProtoUserDataStream {
 	public char getDelimiter() {
 		return this.delimiter;
 	}
+
+	@Override
+	public String getFilePath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
