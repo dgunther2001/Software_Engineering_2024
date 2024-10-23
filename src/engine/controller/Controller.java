@@ -59,12 +59,14 @@ public class Controller implements ProtoController{
     	// don't pass the value 10, pass the value actually want
     	// also need logic to split this into many many requests
     	
+    	final int MAX_THREADS = 50;
+    	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
     	}
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
-    	ExecutorService threadPool = Executors.newCachedThreadPool();
+    	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
     
 		
 		List<Future<?>> futures = new ArrayList<>();
