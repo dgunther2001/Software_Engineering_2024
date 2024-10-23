@@ -49,7 +49,7 @@ public class IntegrationDataStore implements ProtoDataStore{
 	 * Spits out the list of data
 	 * @return
 	 */
-	public DataStream receiveUserOutRequest() {
+	public DataStream receiveData() {
 		return data;
 	}
 
@@ -64,6 +64,14 @@ public class IntegrationDataStore implements ProtoDataStore{
 	public UserDataStream readInputData(String filePath, char delim, String filePathOut) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public String toString() {
+		String retStr= "";
+		for(String listElement : data.getData()) {
+			retStr = retStr + listElement +"\n";
+		}
+		return retStr;
 	}
 
 

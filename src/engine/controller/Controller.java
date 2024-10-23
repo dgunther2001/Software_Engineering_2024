@@ -66,8 +66,9 @@ public class Controller implements ProtoController{
 		List<Future<?>> futures = new ArrayList<>();
     	
     	while(dataIt.hasNext()) {
+    		int nextData = dataIt.next();
     		Callable<ProtoComputeEngineDataStream> dataOutput = () -> {
-        		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(dataIt.next());
+        		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
     			return sendComputeRequest(individualStream);
     		};
     		futures.add(threadPool.submit(dataOutput));

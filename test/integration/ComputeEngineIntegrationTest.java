@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import engine.computeapi.ComputeEngine;
 import engine.controller.Controller;
 import engine.dataapi.DataStore;
+import engine.dataapi.DataStream;
 import engine.userapi.User;
 import engine.userapi.UserDataStream;
 //import engine.controller.*;//real component
@@ -49,7 +50,9 @@ public class ComputeEngineIntegrationTest{
 		Controller testController = new Controller(ds);
 		testController.receiveUserRequest(output);
 		
-		String realOutput = output.toString();
+		//DataStream data = ds.receiveData();
+		String realOutput = ds.toString();
+
 		String expectedOutput = "1.0\n0.38500008\n0.35360003\n";
 		
 		
