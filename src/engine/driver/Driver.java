@@ -36,7 +36,6 @@ public class Driver {
 		
 		// dispatch the userInData to the controller
 		systemControl.receiveUserRequest(userInData);
-
 		
 	}
 }
