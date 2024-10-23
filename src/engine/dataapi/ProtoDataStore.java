@@ -3,17 +3,16 @@ package engine.dataapi;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
+
+import engine.userapi.UserDataInput;
+import engine.userapi.UserDataStream;
+
 import java.util.ArrayList;
 
 /**
  * Prototype interface for the data storage API.
  */
 public interface ProtoDataStore {
-	/**
-	 * Receives a data request for output and processes it.
-	 * we're gonna pass an id as well that we'll make in the controller to have a reference to our obj in the db
-	 */	
-	public DataStream receiveDataOutputRequest(DataStream newData, String id, File file);
 	
 	/**
 	 * Request to store data
@@ -26,7 +25,12 @@ public interface ProtoDataStore {
 	 * Spits out the list of data
 	 * @return
 	 */
-	public ProtoDataStream receiveUserOutRequest();
+	public void receiveUserOutRequest(String filePath, char delim);
+	
+	/**
+	 * Reads the input file
+	 */
+	public UserDataStream readInputData(String filePath, char delim, String filePathOut);
 }
 
 

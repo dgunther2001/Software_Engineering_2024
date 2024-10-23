@@ -20,49 +20,21 @@ import engine.dataapi.ProtoDataStore;
  */
 public class User implements ProtoUser{
 	
-	/**
-	 * Holds the controller
-	 */
-	ProtoController sysctl;
+
 	
-	/**
-	 * Holds the compute engine
-	 */
-	ProtoCompute engine;
-	
-	/**
-	 * Holds the data storage class
-	 */
-	ProtoDataStore dataStore; 
 	
 	/**
 	 * Instantiates all of the needed system components and stores them in the user
 	 */
 	public User() {
-		sysctl = new Controller(this);
-		engine = new ComputeEngine();
-		dataStore = new DataStore();
 	}	
 	
-	/**
-	 * Grabs a reference to the compute engine
-	 */
-	public ProtoCompute getComputeEngine() {
-		return this.engine;
-	}
-	
-	/**
-	 * Allows us to grab the data store
-	 * @return
-	 */
-	public ProtoDataStore getDataStore() {
-		return this.dataStore;
-	}
 
     /**
      * Sends a user request to the controller
      */
-    @Override
+    //@Override
+    /*
     public ProtoUserDataStream sendUserRequest(ProtoUserDataInput data) {
     	try {
 	        List<Integer> rectangles = data.getList(); // grab the input list
@@ -79,8 +51,8 @@ public class User implements ProtoUser{
     		return null;
     	}
     }
-    
-    
+    */
+
 
 
 }

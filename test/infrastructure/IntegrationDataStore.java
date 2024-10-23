@@ -7,6 +7,7 @@ import java.util.List;
 import engine.dataapi.DataStream;
 import engine.dataapi.ProtoDataStore;
 import engine.dataapi.ProtoDataStream;
+import engine.userapi.UserDataStream;
 
 public class IntegrationDataStore implements ProtoDataStore{
 
@@ -52,13 +53,18 @@ public class IntegrationDataStore implements ProtoDataStore{
 		return data;
 	}
 
-	/**
-	 * will be purged
-	 */
 	@Override
-	public DataStream receiveDataOutputRequest(DataStream newData, String id, File file) {
+	public void receiveUserOutRequest(String filePath, char delim) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserDataStream readInputData(String filePath, char delim) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

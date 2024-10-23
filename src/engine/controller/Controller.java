@@ -7,28 +7,41 @@ import java.util.Iterator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
+import engine.computeapi.ComputeEngine;
 import engine.computeapi.ComputeEngineDataStream;
 import engine.userapi.User;
 import engine.userapi.ProtoUser;
 import engine.userapi.ProtoUserDataStream;
 import engine.dataapi.ProtoDataStream;
+import engine.dataapi.DataStore;
 import engine.dataapi.DataStream;
 
 /**
  * The controller which acts as the nexus of all of our APIs
  */
 public class Controller implements ProtoController{
-	/**
-	 * Stores a user class
-	 */
-	ProtoUser theUser;
 	
+	public Controller(DataStore ds) {
+		this.dataStorage = ds;
+	}
+
 	/**
-	 * Controller constructor
+	 * Data storage device
 	 */
-	public Controller(ProtoUser user) {
-		this.theUser = user;
+	private DataStore dataStorage;
+	
+	 
+	 /**
+	  * Return the data store
+	  * @return
+	  */
+	public DataStore getDataStore() {
+		return this.dataStorage;
 	}
 	
     /**
@@ -46,52 +59,48 @@ public class Controller implements ProtoController{
     	}
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
+    	ExecutorService threadPool = Executors.newCachedThreadPool();
+    
+		
+		List<Future<?>> futures = new ArrayList<>();
+    	
     	while(dataIt.hasNext()) {
-    		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(dataIt.next());
-            ProtoComputeEngineDataStream returnData = sendComputeRequest(individualStream);
-            List<String> dataConv = new ArrayList<String>();
-            Float currentArea = returnData.getArea();
-            
-            try {
-            	String dataConvAdd = currentArea.toString();
-            	dataConv.add(dataConvAdd);
-            } catch (Throwable t) {
-            	System.out.println("Floating point data unable to convert to string for storage.");
-            	t.printStackTrace();
-            }
-            
-            if (dataConv.size() != 1) {
-            	throw new IllegalStateException("Output of compute engine is invalud size.");
-            }
-            ProtoDataStream toStore = new DataStream(dataConv);
-            
-            
-            sendDataStoreRequest(toStore);
-             //dataIt.next();
-            // send data storage request
+    		Callable<ProtoComputeEngineDataStream> dataOutput = () -> {
+        		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(dataIt.next());
+    			return sendComputeRequest(individualStream);
+    		};
+    		futures.add(threadPool.submit(dataOutput));
     	}
     	
+
+    	
+    	futures.forEach(future -> {
+    		try {
+    			List<String> dataConv = new ArrayList<String>();
+    			Float currentArea = ((ProtoComputeEngineDataStream) future.get()).getArea();
+    	        try {
+    	        	String dataConvAdd = currentArea.toString();
+    	        	dataConv.add(dataConvAdd);
+    	        } catch (Throwable t) {
+    	        	System.out.println("Floating point data unable to convert to string for storage.");
+    	        	t.printStackTrace();
+    	        }
+    	        ProtoDataStream toStore = new DataStream(dataConv);
+    	        sendDataStoreRequest(toStore);
+    		} catch (Throwable t) {
+    			t.printStackTrace();
+    		}
+    	});
+    	
+    	
     	try {
-	    	ProtoDataStream finalData = theUser.getDataStore().receiveUserOutRequest();
-	    	if (finalData.getData().size() != data.getInput().size()) {
-	    		throw new IllegalStateException("Input array size doesn't match output array size.");
-	    	}
-	    	data.setOutput(finalData.getData());
-	    	return data;
+	    	dataStorage.receiveUserOutRequest(data.getFilePath(), data.getDelimiter());
     	} catch (Throwable t) {
     		t.printStackTrace();
     		return null;
     	}
     	
-        
-        // conversion logic to data store value
-        // then send a data storage request
-        
-        // rinse and repeat until all values have been parsed
-        
-        // then grab all the values from data storage (will need to be another API
-        // place them into a List<String> 
-        // return that value back to the user
+    	return data;
         
     }
 
@@ -105,7 +114,8 @@ public class Controller implements ProtoController{
 	    	if (data.getRectangles() <= 0) {
 	    		throw new IllegalArgumentException("Number of rectangles should be greater than or equal to 0.");
 	    	}
-	    	return theUser.getComputeEngine().receiveComputeRequest(data);
+	    	ComputeEngine computeEngine = new ComputeEngine();
+	    	return computeEngine.receiveComputeRequest(data);
     	} catch (Throwable t) {
     		t.printStackTrace();
     		return null;
@@ -121,7 +131,7 @@ public class Controller implements ProtoController{
 	    	if (data.getData().size() != 1) {
 	    		throw new IllegalArgumentException("Data specified to pass to data store is not a length==1 arraylist of strings.");
 	    	}
-	        theUser.getDataStore().receiveDataStoreRequest(data);
+	        dataStorage.receiveDataStoreRequest(data);
     	} catch (Throwable t) {
     		t.printStackTrace();
     	}

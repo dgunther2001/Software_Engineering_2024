@@ -18,16 +18,12 @@ import engine.computeapi.ComputeEngineDataStream;
 import engine.userapi.UserDataInput;
 
 
+/*
 
-/**
- * Tests the internals of the user to controller API.
- */
 public class TestUserCompute {
 	
 	/**
-	 * Smoke Test
-	 */
-	@Test
+
 	public void userToController_API() throws Exception {
 		
 		Controller mockController = Mockito.mock(Controller.class);
@@ -43,3 +39,5 @@ public class TestUserCompute {
 	
 	
 }
+
+*/

@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * Data stream passed to and from the controller and data storage.
  */
-public class DataStream implements ProtoDataStream, Serializable{
+public class DataStream implements ProtoDataStream{
 
     private List<String> data = new ArrayList<>();
     private String id;
@@ -46,6 +46,7 @@ public class DataStream implements ProtoDataStream, Serializable{
     public String getId(){
     	return this.id;
     }
+    
     
     /**
      * DataSetter
