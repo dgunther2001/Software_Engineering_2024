@@ -18,7 +18,6 @@ import engine.userapi.UserDataStream;
 import infrastructure.TestUserDataInput;//test data input
 import infrastructure.TestUserDataStream;//test output
 import infrastructure.IntegrationDataStore;//fake db
-import infrastructure.IntegrationUser;
 
 
 
@@ -40,11 +39,15 @@ public class ComputeEngineIntegrationTest{
 	@Test
 	public void test() {
 		
-		int[] arr = {1, 10, 25};
-		IntegrationUser user = new IntegrationUser(new ComputeEngine());//put in the tested component
-		TestUserDataInput dataIn = new TestUserDataInput(arr, '\n'); // converts to a list<Integer> in the constructor
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(10);
+		arr.add(25);
 		
-		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
+		UserDataStream output = new UserDataStream(arr, '\n', "");
+		IntegrationDataStore ds = new IntegrationDataStore();
+		Controller testController = new Controller(ds);
+		testController.receiveUserRequest(output);
 		
 		String realOutput = output.toString();
 		String expectedOutput = "1.0\n0.38500008\n0.35360003\n";
@@ -63,14 +66,14 @@ public class ComputeEngineIntegrationTest{
 	 */
 	@Test
 	public void testExceptions() {
-		int[] arr = {};
-		IntegrationUser user =  new IntegrationUser(new ComputeEngine());
-		TestUserDataInput dataIn = new TestUserDataInput(arr, '\n');
-		//TestUserDataInput dataIn = null;
+		List<Integer> arr = new ArrayList<>();
+		UserDataStream output = new UserDataStream(arr, '\n', "");
+		IntegrationDataStore ds = new IntegrationDataStore();
+		Controller testController = new Controller(ds);
 		
 		boolean throwsException = false;
 		try {
-		UserDataStream output = (UserDataStream) user.sendUserRequest(dataIn);
+			testController.receiveUserRequest(output);
 		}catch(Throwable e) {
 			throwsException = true;
 		}

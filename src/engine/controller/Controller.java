@@ -20,27 +20,28 @@ import engine.userapi.ProtoUserDataStream;
 import engine.dataapi.ProtoDataStream;
 import engine.dataapi.DataStore;
 import engine.dataapi.DataStream;
+import engine.dataapi.ProtoDataStore;
 
 /**
  * The controller which acts as the nexus of all of our APIs
  */
 public class Controller implements ProtoController{
 	
-	public Controller(DataStore ds) {
+	public Controller(ProtoDataStore ds) {
 		this.dataStorage = ds;
 	}
 
 	/**
 	 * Data storage device
 	 */
-	private DataStore dataStorage;
+	private ProtoDataStore dataStorage;
 	
 	 
 	 /**
 	  * Return the data store
 	  * @return
 	  */
-	public DataStore getDataStore() {
+	public ProtoDataStore getDataStore() {
 		return this.dataStorage;
 	}
 	

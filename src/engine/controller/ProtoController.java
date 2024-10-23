@@ -4,6 +4,7 @@ package engine.controller;
 import engine.computeapi.ProtoComputeEngineDataStream;
 import engine.dataapi.DataStore;
 import engine.dataapi.DataStream;
+import engine.dataapi.ProtoDataStore;
 import engine.dataapi.ProtoDataStream;
 //import engine.userapi.UserDataStream;
 import engine.userapi.ProtoUserDataStream;
@@ -14,16 +15,16 @@ import engine.userapi.ProtoUserDataStream;
  */
 public interface ProtoController {
 	
-	 /**
-	  * Holds a data storage device
-	  */
-	 DataStore dataStorage = new DataStore();
+	/**
+	 * Data storage unit
+	 */
+	 ProtoDataStore dataStorage = null;
 	 
 	 /**
 	  * Return the data store
 	  * @return
 	  */
-	 public DataStore getDataStore();
+	 public ProtoDataStore getDataStore();
 
     /**
      * Receive and process a user request
