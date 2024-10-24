@@ -23,6 +23,11 @@ public class UserDataStream implements ProtoUserDataStream{
 	char delimiter; 
 	
 	/**
+	 * Filepath
+	 */
+	String filePath;
+	
+	/**
 	 * Grabs the input array
 	 */
 	@Override
@@ -49,9 +54,10 @@ public class UserDataStream implements ProtoUserDataStream{
 	/**
 	 * The constructor that requires a list of integer inputs
 	 */
-	public UserDataStream(List<Integer> inputs, char delimiter) {
+	public UserDataStream(List<Integer> inputs, char delimiter, String filePath) {
 		this.input = inputs;
 		this.delimiter = delimiter;
+		this.filePath = filePath;
 	}
 	
 	/**
@@ -80,5 +86,13 @@ public class UserDataStream implements ProtoUserDataStream{
 	@Override
 	public char getDelimiter() {
 		return this.delimiter;
+	}
+	
+	/**
+	 * Grab the filepath
+	 */
+	@Override
+	public String getFilePath() {
+		return this.filePath;
 	}
 }

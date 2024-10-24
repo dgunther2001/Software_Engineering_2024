@@ -9,6 +9,11 @@ import java.util.List;
 public interface ProtoUserDataStream {
 	
 	/**
+	 * Output filepath
+	 */
+	String filePath = "";
+	
+	/**
 	 * Grabs the input list
 	 */
 	public List<Integer> getInput();
@@ -39,4 +44,11 @@ public interface ProtoUserDataStream {
 	 * @return
 	 */
 	public char getDelimiter();
+	
+	/**
+	 * Grab the filepath
+	 * @return
+	 */
+	public String getFilePath();
+	
 }
