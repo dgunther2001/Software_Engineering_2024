@@ -3,6 +3,7 @@ package integration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -48,17 +49,14 @@ public class ComputeEngineIntegrationTest{
 		UserDataStream output = new UserDataStream(arr, '\n', "");
 		IntegrationDataStore ds = new IntegrationDataStore();
 		Controller testController = new Controller(ds);
-		testController.receiveUserRequest(output);
+		testController.receiveUserRequest(output, ';');
 		
 		//DataStream data = ds.receiveData();
 		String realOutput = ds.toString();
 
 		String expectedOutput = "1.0\n0.38500008\n0.35360003\n";
 		
-		
-		if(!realOutput.equals(expectedOutput)) {
-			fail();//the actual test
-		}
+		Assertions.assertEquals(realOutput, expectedOutput);
 		
 	}
 	
@@ -76,7 +74,7 @@ public class ComputeEngineIntegrationTest{
 		
 		boolean throwsException = false;
 		try {
-			testController.receiveUserRequest(output);
+			testController.receiveUserRequest(output, ';');
 		}catch(Throwable e) {
 			throwsException = true;
 		}

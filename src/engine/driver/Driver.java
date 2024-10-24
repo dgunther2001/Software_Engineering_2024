@@ -24,18 +24,19 @@ public class Driver {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		char delim = args[3].charAt(0);
-		String filePathIn = args[1];
-		String filePathOut = args[2];
+		char delim = args[2].charAt(0);
+		String filePathIn = args[0];
+		String filePathOut = args[1];
 		
 		DataStore dataStore = new DataStore();
 		Controller systemControl = new Controller(dataStore);
 		
-		
-		UserDataStream userInData = dataStore.readInputData(filePathIn, delim, filePathOut); // grabs the input data
+		User mainUser = new User(systemControl);
+		mainUser.run(filePathOut, delim, filePathIn);
+		//UserDataStream userInData = dataStore.readInputData(filePathIn, delim, filePathOut); // grabs the input data
 		
 		// dispatch the userInData to the controller
-		systemControl.receiveUserRequest(userInData);
+		//systemControl.receiveUserRequest(userInData);
 		
 	}
 }

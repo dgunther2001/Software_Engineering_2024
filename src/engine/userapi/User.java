@@ -1,5 +1,7 @@
 package engine.userapi;
 
+import java.io.File;
+
 /**
  * Actual implementation of the user end of the API.
  */
@@ -21,13 +23,26 @@ import engine.dataapi.ProtoDataStore;
 public class User implements ProtoUser{
 	
 
-	
+	Controller control;
 	
 	/**
 	 * Instantiates all of the needed system components and stores them in the user
 	 */
-	public User() {
+	public User( Controller controller) {
+		control = controller;
 	}	
+	
+	/**
+	 * function similar to the one provided by the threading tests to make user work again
+	 * @param outputPath
+	 * @param delimiter
+	 * @param inputPath
+	 */
+	public void run(String outputPath, char delimiter, String inputPath) {
+		UserDataStream data = control.getDataStore().readInputData(inputPath, outputPath, delimiter);
+		control.receiveUserRequest(data, delimiter);
+		control.getDataStore().receiveUserOutRequest(outputPath, delimiter);
+	}
 	
 
     /**

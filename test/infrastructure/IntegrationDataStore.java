@@ -41,7 +41,7 @@ public class IntegrationDataStore implements ProtoDataStore{
 	 * Actually receives an individual data storage request
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException{
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException{
 		data.append(newData);
 		
 	}
@@ -68,7 +68,7 @@ public class IntegrationDataStore implements ProtoDataStore{
 	 * Irrelevant for the integration test
 	 */
 	@Override
-	public UserDataStream readInputData(String filePath, char delim, String filePathOut) {
+	public UserDataStream readInputData(String filePath, String filePathOut, char delim) {
 		// TODO Auto-generated method stub
 		return null;
 	}
