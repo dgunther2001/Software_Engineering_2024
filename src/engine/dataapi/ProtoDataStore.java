@@ -24,12 +24,12 @@ public interface ProtoDataStore {
 	/**
 	 * Reads the input file
 	 */
-	public UserDataStream readInputData(String filePath, char delim, String filePathOut);
+	public UserDataStream readInputData(String filePath, String filePathOut, char delimiter);
 
 	/**
 	 * Actually receives an individual data storage request
 	 */
-	void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException;
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException;
 
 
 }

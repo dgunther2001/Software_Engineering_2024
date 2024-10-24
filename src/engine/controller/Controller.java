@@ -53,7 +53,7 @@ public class Controller implements ProtoController{
      * Component that receives user requests.
      */
     @Override
-    public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
+    public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data, char delim) {
     	
     	// conversion logic from UserDataStream to ComputeEngineData Stream
     	// don't pass the value 10, pass the value actually want
@@ -94,7 +94,7 @@ public class Controller implements ProtoController{
     	        	t.printStackTrace();
     	        }
     	        ProtoDataStream toStore = new DataStream(dataConv);
-    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath());
+    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath(), delim);
     		} catch (Throwable t) {
     			t.printStackTrace();
     		}

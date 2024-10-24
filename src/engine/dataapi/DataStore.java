@@ -40,12 +40,11 @@ public class DataStore implements ProtoDataStore {
 	 * @throws IOException 
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException {
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException {
 
 		String dat = newData.getData().get(0);
-        File myObj = new File(filePath);
         FileWriter myWriter = new FileWriter(filePath, true);
-        myWriter.write(dat);
+        myWriter.write(dat + delim);
         myWriter.close();
 	}
 	
@@ -61,7 +60,7 @@ public class DataStore implements ProtoDataStore {
 	/**
 	 * Reads the input data from a file
 	 */
-	public UserDataStream readInputData(String filePathIn, char delim, String filePathOut) {
+	public UserDataStream readInputData(String filePathIn,  String filePathOut, char delim) {
 		String content = "";
         try {
             content = new String(Files.readAllBytes(Paths.get(filePathIn)));

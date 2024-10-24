@@ -3,6 +3,7 @@ package integration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,10 +56,7 @@ public class ComputeEngineIntegrationTest{
 
 		String expectedOutput = "1.0\n0.38500008\n0.35360003\n";
 		
-		
-		if(!realOutput.equals(expectedOutput)) {
-			fail();//the actual test
-		}
+		Assertions.assertEquals(realOutput, expectedOutput);
 		
 	}
 	

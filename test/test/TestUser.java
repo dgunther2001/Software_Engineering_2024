@@ -28,7 +28,7 @@ public class TestUser {
 	public void run(String outputPath) {
 		char delimiter = ';';
 		String inputPath = "test/test" + File.separatorChar + "testInputFile.test";
-		UserDataStream data = coordinator.getDataStore().readInputData(inputPath, delimiter, outputPath);
+		UserDataStream data = coordinator.getDataStore().readInputData(inputPath, outputPath);
 		coordinator.receiveUserRequest(data);
 		coordinator.getDataStore().receiveUserOutRequest(outputPath, delimiter);
 	}

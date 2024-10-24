@@ -29,7 +29,7 @@ public interface ProtoController {
     /**
      * Receive and process a user request
      */
-	 public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data); 
+	 public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data, char delim); 
 
     /**
      * Send a compute request.
