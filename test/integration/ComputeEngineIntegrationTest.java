@@ -49,7 +49,7 @@ public class ComputeEngineIntegrationTest{
 		UserDataStream output = new UserDataStream(arr, '\n', "");
 		IntegrationDataStore ds = new IntegrationDataStore();
 		Controller testController = new Controller(ds);
-		testController.receiveUserRequest(output);
+		testController.receiveUserRequest(output, ';');
 		
 		//DataStream data = ds.receiveData();
 		String realOutput = ds.toString();
@@ -74,7 +74,7 @@ public class ComputeEngineIntegrationTest{
 		
 		boolean throwsException = false;
 		try {
-			testController.receiveUserRequest(output);
+			testController.receiveUserRequest(output, ';');
 		}catch(Throwable e) {
 			throwsException = true;
 		}
