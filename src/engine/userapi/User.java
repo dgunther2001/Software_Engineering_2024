@@ -32,6 +32,12 @@ public class User implements ProtoUser{
 		control = controller;
 	}	
 	
+	/**
+	 * function similar to the one provided by the threading tests to make user work again
+	 * @param outputPath
+	 * @param delimiter
+	 * @param inputPath
+	 */
 	public void run(String outputPath, char delimiter, String inputPath) {
 		UserDataStream data = control.getDataStore().readInputData(inputPath, outputPath, delimiter);
 		control.receiveUserRequest(data, delimiter);
