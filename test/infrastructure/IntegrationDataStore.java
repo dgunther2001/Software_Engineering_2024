@@ -1,6 +1,7 @@
 package infrastructure;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class IntegrationDataStore implements ProtoDataStore{
 	 * Actually receives an individual data storage request
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData) {
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException{
 		data.append(newData);
 		
 	}

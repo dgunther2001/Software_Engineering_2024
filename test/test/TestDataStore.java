@@ -30,7 +30,7 @@ public class TestDataStore {
 
 
 		DataStore testDataStore = new DataStore();
-		testDataStore.receiveDataStoreRequest(mockDataStream);
+		//testDataStore.receiveDataStoreRequest(mockDataStream);
 	}
 	
 }

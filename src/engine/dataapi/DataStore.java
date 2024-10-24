@@ -37,11 +37,16 @@ public class DataStore implements ProtoDataStore {
 	
 	/**
 	 * Actually receives an individual data storage request
+	 * @throws IOException 
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData) {
-		data.append(newData);
-		
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException {
+
+		String dat = newData.getData().get(0);
+        File myObj = new File(filePath);
+        FileWriter myWriter = new FileWriter(filePath, true);
+        myWriter.write(dat);
+        myWriter.close();
 	}
 	
 	/**
@@ -49,21 +54,7 @@ public class DataStore implements ProtoDataStore {
 	 * @return
 	 */
 	public void receiveUserOutRequest(String filePath, char delim) {
-		if (data.getData().size() <= 0 || data == null) {
-			throw new IllegalStateException("No data to return");
-		}
-	    try {
-	        File myObj = new File(filePath);
-	        FileWriter myWriter = new FileWriter(filePath);
-	        for (String s : data.getData()) {
-		        myWriter.write(s);
-	        }
-	        myWriter.close();
-	        myObj.createNewFile();
-	    } catch (IOException e) {
-	    	e.printStackTrace();
-	    }
-	    
+
 		return; 
 	}
 	
@@ -74,7 +65,6 @@ public class DataStore implements ProtoDataStore {
 		String content = "";
         try {
             content = new String(Files.readAllBytes(Paths.get(filePathIn)));
-            System.out.println(content);
         } catch (IOException e) {
             e.printStackTrace();
         }

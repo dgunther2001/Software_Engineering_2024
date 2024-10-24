@@ -94,7 +94,7 @@ public class Controller implements ProtoController{
     	        	t.printStackTrace();
     	        }
     	        ProtoDataStream toStore = new DataStream(dataConv);
-    	        sendDataStoreRequest(toStore);
+    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath());
     		} catch (Throwable t) {
     			t.printStackTrace();
     		}
@@ -139,7 +139,6 @@ public class Controller implements ProtoController{
 	    	if (data.getData().size() != 1) {
 	    		throw new IllegalArgumentException("Data specified to pass to data store is not a length==1 arraylist of strings.");
 	    	}
-	        dataStorage.receiveDataStoreRequest(data);
     	} catch (Throwable t) {
     		t.printStackTrace();
     	}
