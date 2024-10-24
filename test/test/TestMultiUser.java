@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,12 +83,12 @@ public class TestMultiUser {
 		List<String> singleThreaded = loadAllOutput(singleThreadFilePrefix, numThreads);
 		List<String> multiThreaded = loadAllOutput(multiThreadFilePrefix, numThreads);
 		if(singleThreaded.size() != multiThreaded.size()) {
-			Assert.fail();
+			Assertions.fail();
 		}
 		else {
 			for(int i=0; i<singleThreaded.size(); i++) {
 				if(!singleThreaded.get(i).equals(multiThreaded.get(i))) {
-					Assert.fail();
+					Assertions.fail();
 				}
 			}
 		}
