@@ -84,8 +84,7 @@ public class TestMultiUser {
 		List<String> multiThreaded = loadAllOutput(multiThreadFilePrefix, numThreads);
 		if(singleThreaded.size() != multiThreaded.size()) {
 			Assertions.fail();
-		}
-		else {
+		} else {
 			for(int i=0; i<singleThreaded.size(); i++) {
 				if(!singleThreaded.get(i).equals(multiThreaded.get(i))) {
 					Assertions.fail();
