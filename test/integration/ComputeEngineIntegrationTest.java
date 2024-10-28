@@ -8,16 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import engine.computeapi.ComputeEngine;
 import engine.controller.Controller;
-import engine.dataapi.DataStore;
-import engine.dataapi.DataStream;
-import engine.userapi.User;
 import engine.userapi.UserDataStream;
 //import engine.controller.*;//real component
 //import engine.computeapi.*;//another real component
-import infrastructure.TestUserDataInput;//test data input
-import infrastructure.TestUserDataStream;//test output
 import infrastructure.IntegrationDataStore;//fake db
 
 
