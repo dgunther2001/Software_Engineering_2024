@@ -7,3 +7,5 @@ src/Engine/.LCKUser.java~
 .classpath
 /build/
 .settings/org.eclipse.jdt.core.prefs
+.DS_Store
+build

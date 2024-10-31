@@ -1,0 +1,11 @@
+package dataPass;
+
+message clientRequest {
+	repeated int32 inputList = 1;
+	optional int32 errCode = 2;
+}
+
+message serverResponse {
+	repeated string outputList = 1;
+	optional int32 errCode = 2;
+}
