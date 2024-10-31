@@ -94,7 +94,7 @@ public class Controller implements ProtoController{
     	        	t.printStackTrace();
     	        }
     	        ProtoDataStream toStore = new DataStream(dataConv);
-    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath());
+    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath(), data.getDelimiter());
     		} catch (Throwable t) {
     			t.printStackTrace();
     		}

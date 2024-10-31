@@ -41,7 +41,7 @@ public class IntegrationDataStore implements ProtoDataStore{
 	 * Actually receives an individual data storage request
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException{
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException{
 		data.append(newData);
 		
 	}

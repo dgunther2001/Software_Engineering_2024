@@ -29,7 +29,7 @@ public interface ProtoDataStore {
 	/**
 	 * Actually receives an individual data storage request
 	 */
-	void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException;
+	void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException;
 
 
 }
