@@ -40,12 +40,13 @@ public class DataStore implements ProtoDataStore {
 	 * @throws IOException 
 	 */
 	@Override
-	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath) throws IOException {
+	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException {
 
 		String dat = newData.getData().get(0);
         File myObj = new File(filePath);
         FileWriter myWriter = new FileWriter(filePath, true);
         myWriter.write(dat);
+        myWriter.write(delim);
         myWriter.close();
 	}
 	
