@@ -1,11 +1,25 @@
 package dataPass;
 
 message clientRequest {
-	repeated int32 inputList = 1;
+	optional string inputFile = 3;
+	optional string outputFile = 4;
+	optional string delimiter = 5;
 	optional int32 errCode = 2;
 }
 
 message serverResponse {
-	repeated string outputList = 1;
-	optional int32 errCode = 2;
+	optional string writeToFile = 1; // path where I wrote to
+	optional int32 errCode = 2; // could also just send a success code
 }
+
+service riemannSumService {
+	rpc createRiemannSum (clientRequest) returns (serverResponse) {}
+}
+
+// server file
+
+// client file
+
+// each contains main function
+
+
