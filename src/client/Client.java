@@ -12,13 +12,23 @@ import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 
+/**
+ * An individual client
+ */
 public class Client {
 	private final riemannSumServiceBlockingStub blockingStub;
 	
+	/**
+	 * Client constructor (takes socket as input)
+	 * @param channel
+	 */
 	public Client(Channel channel) {
 		blockingStub = riemannSumServiceGrpc.newBlockingStub(channel);
 	}
 	
+	/**
+	 * Send a request to the server
+	 */
 	public void sendRequest(String inputFilePath, String outputFilePath, String delim) {
 		clientRequest req =  clientRequest.newBuilder().setInputFile(inputFilePath).setOutputFile(outputFilePath).setDelimiter(delim).build();
 		serverResponse res;
@@ -38,6 +48,11 @@ public class Client {
 		}
 	}
 	
+	/**
+	 * Driver for each client (Requires that server running locally on correct port)
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		String target = "localhost:50051";
 		ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
