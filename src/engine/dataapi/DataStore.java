@@ -51,6 +51,23 @@ public class DataStore implements ProtoDataStore {
 	}
 	
 	/**
+	 * EXTRA METHOD
+	 * @param newData
+	 * @param filePath
+	 * @param delim
+	 * @throws IOException
+	 */
+	public void receiveDataStoreRequest(String newData, String filePath, char delim) throws IOException {
+
+		String dat = newData;
+        File myObj = new File(filePath);
+        FileWriter myWriter = new FileWriter(filePath, true);
+        myWriter.write(dat);
+        myWriter.write(delim);
+        myWriter.close();
+	}
+	
+	/**
 	 * writes to an output file
 	 * @return
 	 */
