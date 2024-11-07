@@ -18,6 +18,9 @@ import engine.dataapi.ProtoDataStore;
 import engine.dataapi.ProtoDataStream;
 import engine.userapi.ProtoUserDataStream;
 
+/**
+ * Performance controller for the performance test
+ */
 public class PerformanceController implements ProtoController {
 
 	/**
@@ -36,7 +39,10 @@ public class PerformanceController implements ProtoController {
 		return;	
 	}
 	
-
+	
+	/**
+	 * Simplified without data storage component. Simply exists to overclock my CPU.
+	 */
 	@Override
 	public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
     	final int MAX_THREADS = 50;
@@ -64,6 +70,9 @@ public class PerformanceController implements ProtoController {
     	return data;
 	}
 
+	/**
+	 * Identical to the controller.
+	 */
 	@Override
 	public ProtoComputeEngineDataStream sendComputeRequest(ProtoComputeEngineDataStream data) {
     	

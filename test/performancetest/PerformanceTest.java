@@ -8,8 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import engine.userapi.UserDataStream;
 
+/**
+ * Performance test for the compute engine.
+ */
 public class PerformanceTest {
 	
+	/**
+	 * Timing test for the compute engine
+	 */
 	@Test
 	public void compEngineTimingTest() {
 		final Integer NUM_ITERATIONS = 10;
