@@ -16,8 +16,7 @@ public class PerformanceTest {
 	/**
 	 * Timing test for the compute engine
 	 */
-	@Test
-	public void compEngineTimingTest() {
+	public static void main(String[] args) {
 		final Integer NUM_ITERATIONS = 10;
 		
 		PerformanceController testController = new PerformanceController();
