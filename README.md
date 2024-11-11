@@ -11,3 +11,4 @@ We intend to compute the integral f(x) = an artbitray function, over an arbitrar
 ### Performance Diagnostics
 Prior to any performance optimization, we observed the following execution time when calculating 2,000,000 solutions, 1,000,000 unique data inputs averaged over 10 iterations:  
 **Daniel's Computer:** 460 milliseconds +- 10 milliseconds.
+**Nico's Computer:** 5156 milliseconds +- 10 milliseconds.
