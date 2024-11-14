@@ -22,17 +22,12 @@ public class PerformanceTestDefault {
 		PerformanceControllerDefault testController = new PerformanceControllerDefault();
 		List<Integer> testData = new ArrayList<>();
 		
-		for (int i = 0; i < 500000; i++) {
-			for (int j = 1; j < 25; j++) {
+		for (int i = 0; i < 700000; i++) {
+			for (int j = 1; j < 100; j++) {
 				testData.add(j);
 			}
 		}
 		
-		for (int i = 0; i < 500000; i++) {
-			for (int j = 1; j < 25; j++) {
-				testData.add(j);
-			}
-		}
 		
 		char delim = '\n';
 		String file = "arbitrary.txt";
@@ -56,6 +51,8 @@ public class PerformanceTestDefault {
 	    	
 	    	timeElapsed = endTime - startTime;
 			cumulativeTime += timeElapsed;
+			
+			System.gc();
 		}
 		
 		averageTime = cumulativeTime / NUM_ITERATIONS;

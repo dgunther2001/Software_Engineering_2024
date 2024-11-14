@@ -68,6 +68,7 @@ public class PerformanceControllerDefault implements ProtoController {
     
 		
 		List<Future<?>> futures = new ArrayList<>();
+		//int counter = 0;
 		
     	while(dataIt.hasNext()) {
     		int nextData = dataIt.next();
@@ -76,8 +77,16 @@ public class PerformanceControllerDefault implements ProtoController {
         		return sendComputeRequest(individualStream);
     		};
     		
-    		System.gc();
+    		/*
+    		if (counter == 5000000) {
+    			//System.out.println("Running gc");
+    			System.gc(); 
+    			counter = 0;
+    		} else {
+    			counter++;
+    		}
     		
+    		*/
     		futures.add(threadPool.submit(dataOutput));
     	}
     	

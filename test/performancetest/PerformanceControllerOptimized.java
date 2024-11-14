@@ -71,13 +71,27 @@ public class PerformanceControllerOptimized implements ProtoController {
 		
 		List<Future<?>> futures = new ArrayList<>();
 		
+		//int counter = 0;
+		
     	while(dataIt.hasNext()) {
     		int nextData = dataIt.next();
+    		
+    		
     		Callable<ProtoComputeEngineDataStream> dataOutput = () -> {
         		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
         		return sendComputeRequest(individualStream, computeEngineCache);
     		};
-    		System.gc();
+    		
+    		/*
+    		if (counter == 5000000) {
+    			//System.out.println("Running gc");
+    			System.gc(); 
+    			counter = 0;
+    		} else {
+    			counter++;
+    		}
+    		*/
+    		
     		futures.add(threadPool.submit(dataOutput));
     	}
     	
