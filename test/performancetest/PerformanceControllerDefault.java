@@ -49,7 +49,7 @@ public class PerformanceControllerDefault implements ProtoController {
 	public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
 		
 		
-    	final int MAX_THREADS = 8;
+    	final int MAX_THREADS = 14;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
@@ -75,6 +75,9 @@ public class PerformanceControllerDefault implements ProtoController {
         		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
         		return sendComputeRequest(individualStream);
     		};
+    		
+    		System.gc();
+    		
     		futures.add(threadPool.submit(dataOutput));
     	}
     	

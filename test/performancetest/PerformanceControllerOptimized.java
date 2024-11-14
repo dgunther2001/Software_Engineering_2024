@@ -50,7 +50,7 @@ public class PerformanceControllerOptimized implements ProtoController {
 		
 		Cache computeEngineCache = new Cache();
 		
-    	final int MAX_THREADS = 8;
+    	final int MAX_THREADS = 14;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
@@ -77,6 +77,7 @@ public class PerformanceControllerOptimized implements ProtoController {
         		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
         		return sendComputeRequest(individualStream, computeEngineCache);
     		};
+    		System.gc();
     		futures.add(threadPool.submit(dataOutput));
     	}
     	

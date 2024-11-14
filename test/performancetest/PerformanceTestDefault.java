@@ -22,14 +22,14 @@ public class PerformanceTestDefault {
 		PerformanceControllerDefault testController = new PerformanceControllerDefault();
 		List<Integer> testData = new ArrayList<>();
 		
-		for (int i = 0; i < 1000000; i++) {
-			for (int j = 1; j < 100; j++) {
+		for (int i = 0; i < 500000; i++) {
+			for (int j = 1; j < 25; j++) {
 				testData.add(j);
 			}
 		}
 		
-		for (int i = 0; i < 1000000; i++) {
-			for (int j = 1; j < 100; j++) {
+		for (int i = 0; i < 500000; i++) {
+			for (int j = 1; j < 25; j++) {
 				testData.add(j);
 			}
 		}

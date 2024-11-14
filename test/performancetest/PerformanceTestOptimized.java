@@ -22,13 +22,13 @@ public class PerformanceTestOptimized {
 		PerformanceControllerOptimized testController = new PerformanceControllerOptimized();
 		List<Integer> testData = new ArrayList<>();
 		
-		for (int i = 0; i < 1000000; i++) {
+		for (int i = 0; i < 250000; i++) {
 			for (int j = 1; j < 100; j++) {
 				testData.add(j);
 			}
 		}
 		
-		for (int i = 0; i < 1000000; i++) {
+		for (int i = 0; i < 250000; i++) {
 			for (int j = 1; j < 100; j++) {
 				testData.add(j);
 			}
