@@ -11,20 +11,27 @@ import engine.userapi.UserDataStream;
 /**
  * Performance test for the compute engine.
  */
-public class PerformanceTest {
+public class PerformanceTestDefault {
 	
 	/**
 	 * Timing test for the compute engine
 	 */
 	public static void main(String[] args) {
-		final Integer NUM_ITERATIONS = 10;
+		final Integer NUM_ITERATIONS = 5;
 		
-		PerformanceController testController = new PerformanceController();
+		PerformanceControllerDefault testController = new PerformanceControllerDefault();
 		List<Integer> testData = new ArrayList<>();
 		
-		for (int i = 1; i <= 1000000; i++) {
-			testData.add(i);
-			testData.add(i);
+		for (int i = 0; i < 1000000; i++) {
+			for (int j = 1; j < 100; j++) {
+				testData.add(j);
+			}
+		}
+		
+		for (int i = 0; i < 1000000; i++) {
+			for (int j = 1; j < 100; j++) {
+				testData.add(j);
+			}
 		}
 		
 		char delim = '\n';

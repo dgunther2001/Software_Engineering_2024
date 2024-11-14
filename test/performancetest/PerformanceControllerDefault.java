@@ -7,8 +7,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
+import engine.cache.Cache;
 import engine.computeapi.ComputeEngine;
 import engine.computeapi.ComputeEngineDataStream;
 import engine.computeapi.ProtoComputeEngineDataStream;
@@ -21,7 +23,7 @@ import engine.userapi.ProtoUserDataStream;
 /**
  * Performance controller for the performance test
  */
-public class PerformanceController implements ProtoController {
+public class PerformanceControllerDefault implements ProtoController {
 
 	/**
 	 * Unneeded 
@@ -45,14 +47,24 @@ public class PerformanceController implements ProtoController {
 	 */
 	@Override
 	public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
-    	final int MAX_THREADS = 50;
+		
+		
+    	final int MAX_THREADS = 8;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
     	}
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
-    	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+    	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS, new ThreadFactory() {
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread myThread = new Thread(r);
+				myThread.setDaemon(true);
+				return myThread;
+			}
+    		
+    	});
     
 		
 		List<Future<?>> futures = new ArrayList<>();
@@ -61,7 +73,7 @@ public class PerformanceController implements ProtoController {
     		int nextData = dataIt.next();
     		Callable<ProtoComputeEngineDataStream> dataOutput = () -> {
         		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
-    			return sendComputeRequest(individualStream);
+        		return sendComputeRequest(individualStream);
     		};
     		futures.add(threadPool.submit(dataOutput));
     	}
