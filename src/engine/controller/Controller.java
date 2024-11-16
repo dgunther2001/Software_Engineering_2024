@@ -11,7 +11,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 
+import engine.cache.Cache;
 import engine.computeapi.ComputeEngine;
 import engine.computeapi.ComputeEngineDataStream;
 import engine.userapi.User;
@@ -59,14 +61,24 @@ public class Controller implements ProtoController{
     	// don't pass the value 10, pass the value actually want
     	// also need logic to split this into many many requests
     	
-    	final int MAX_THREADS = 50;
+    	Cache computeEngineCache = new Cache();
+    	
+    	final int MAX_THREADS = 8;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
     	}
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
-    	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+    	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS, new ThreadFactory() {
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread myThread = new Thread(r);
+				myThread.setDaemon(true);
+				return myThread;
+			}
+    		
+    	});
     
 		
 		List<Future<?>> futures = new ArrayList<>();
@@ -75,7 +87,7 @@ public class Controller implements ProtoController{
     		int nextData = dataIt.next();
     		Callable<ProtoComputeEngineDataStream> dataOutput = () -> {
         		ProtoComputeEngineDataStream individualStream = new ComputeEngineDataStream(nextData);
-    			return sendComputeRequest(individualStream);
+    			return sendComputeRequest(individualStream, computeEngineCache);
     		};
     		futures.add(threadPool.submit(dataOutput));
     	}
@@ -124,6 +136,23 @@ public class Controller implements ProtoController{
 	    	}
 	    	ComputeEngine computeEngine = new ComputeEngine();
 	    	return computeEngine.receiveComputeRequest(data);
+    	} catch (Throwable t) {
+    		t.printStackTrace();
+    		return null;
+    	}
+    }
+    
+    /**
+     * Cache version
+     */
+    public ProtoComputeEngineDataStream sendComputeRequest(ProtoComputeEngineDataStream data, Cache cache) {	
+    	try {
+	    	// all we have to do is use the user engine instead
+	    	if (data.getRectangles() <= 0) {
+	    		throw new IllegalArgumentException("Number of rectangles should be greater than or equal to 0.");
+	    	}
+	    	ComputeEngine computeEngine = new ComputeEngine();
+	    	return computeEngine.receiveComputeRequest(data, cache);
     	} catch (Throwable t) {
     		t.printStackTrace();
     		return null;
