@@ -18,6 +18,16 @@ public class PerformanceTestDefault {
 	 */
 	public static void main(String[] args) {
 		final Integer NUM_ITERATIONS = 5;
+		final Integer BATCH_SIZE = 1000000;
+		
+		long cumulativeTime = 0;
+		float averageTime;
+    	long startTime;
+    	long endTime;
+    	long timeElapsed;
+    	
+		char delim = '\n';
+		String file = "arbitrary.txt";
 		
 		PerformanceControllerDefault testController = new PerformanceControllerDefault();
 		List<Integer> testData = new ArrayList<>();
@@ -29,17 +39,8 @@ public class PerformanceTestDefault {
 		}
 		
 		
-		char delim = '\n';
-		String file = "arbitrary.txt";
-		
 		UserDataStream testUserData = new UserDataStream(testData, delim, file);
 		
-		
-		long cumulativeTime = 0;
-		float averageTime;
-    	long startTime;
-    	long endTime;
-    	long timeElapsed;
 		
 		for (int i = 0; i < NUM_ITERATIONS; i++) {
 			

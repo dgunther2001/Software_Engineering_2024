@@ -88,6 +88,10 @@ public class PerformanceControllerDefault implements ProtoController {
     		
     		*/
     		futures.add(threadPool.submit(dataOutput));
+    		
+    		if (futures.size() == 100000) {
+    			futures.clear();
+    		}
     	}
     	
     	

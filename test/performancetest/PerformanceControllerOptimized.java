@@ -93,6 +93,10 @@ public class PerformanceControllerOptimized implements ProtoController {
     		*/
     		
     		futures.add(threadPool.submit(dataOutput));
+    		
+    		if (futures.size() == 100000) {
+    			futures.clear();
+    		}
     	}
     	
     	
