@@ -51,7 +51,7 @@ public class PerformanceControllerOptimized implements ProtoController {
 		
 		Cache computeEngineCache = new Cache();
 		
-    	final int MAX_THREADS = 50;
+    	final int MAX_THREADS = 10;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");

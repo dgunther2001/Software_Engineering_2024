@@ -49,7 +49,7 @@ public class PerformanceControllerDefault implements ProtoController {
 	public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
 		
 		
-    	final int MAX_THREADS = 50;
+    	final int MAX_THREADS = 10;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
