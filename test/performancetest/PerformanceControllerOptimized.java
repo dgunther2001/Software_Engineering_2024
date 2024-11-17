@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -50,7 +51,7 @@ public class PerformanceControllerOptimized implements ProtoController {
 		
 		Cache computeEngineCache = new Cache();
 		
-    	final int MAX_THREADS = 14;
+    	final int MAX_THREADS = 50;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
@@ -94,8 +95,14 @@ public class PerformanceControllerOptimized implements ProtoController {
     		
     		futures.add(threadPool.submit(dataOutput));
     		
-    		if (futures.size() == 100000) {
-    			futures.clear();
+    		if (futures.size() > 900000) {
+    			for (Future<?> future : futures) {
+    				try {
+						future.get();
+					} catch (Throwable t) {
+						t.printStackTrace();
+					}
+    			}
     		}
     	}
     	
