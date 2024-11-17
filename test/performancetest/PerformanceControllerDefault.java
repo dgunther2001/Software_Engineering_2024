@@ -89,7 +89,7 @@ public class PerformanceControllerDefault implements ProtoController {
     		*/
     		futures.add(threadPool.submit(dataOutput));
     		
-    		if (futures.size() > 900000) {
+    		if (futures.size() > 1000000) {
     			for (Future<?> future : futures) {
     				try {
 						future.get();
