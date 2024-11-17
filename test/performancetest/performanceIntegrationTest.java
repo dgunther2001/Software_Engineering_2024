@@ -7,8 +7,15 @@ import org.junit.jupiter.api.Test;
 
 import engine.userapi.UserDataStream;
 
-public class performance_integration_test {
+/**
+ * Integration test that checks performance
+ */
+public class performanceIntegrationTest {
 
+		/**
+		 * Default performance test
+		 * @return
+		 */
 	public Float defaultRuntime() {
 		final Integer NUM_ITERATIONS = 5;
 		final Integer BATCH_SIZE = 1000000;
@@ -27,7 +34,7 @@ public class performance_integration_test {
 		// somehow batch data into bitesized lists of 1,000,000 (BATCH_SIZE) elements
 		// have a counter that is less than batchsize and store the current v
 		
-		for (int num_iter = 0; num_iter < NUM_ITERATIONS; num_iter++) {
+		for (int numIter = 0; numIter < NUM_ITERATIONS; numIter++) {
 			for (int start = 0; start < 100; start++){
 				
 				startTime = System.currentTimeMillis();
@@ -60,6 +67,10 @@ public class performance_integration_test {
 		return averageTime;
 	}
 	
+	/**
+	 * Optimized performance test
+	 * @return
+	 */
 	public Float optimizedRuntime() {
 		final Integer NUM_ITERATIONS = 5;
 		final Integer BATCH_SIZE = 1000000;
@@ -78,7 +89,7 @@ public class performance_integration_test {
 		// somehow batch data into bitesized lists of 1,000,000 (BATCH_SIZE) elements
 		// have a counter that is less than batchsize and store the current v
 		
-		for (int num_iter = 0; num_iter < NUM_ITERATIONS; num_iter++) {
+		for (int numIter = 0; numIter < NUM_ITERATIONS; numIter++) {
 			for (int start = 0; start < 100; start++){
 				
 				startTime = System.currentTimeMillis();
@@ -112,6 +123,9 @@ public class performance_integration_test {
 	}
 	
 	
+	/**
+	 * Checks the difference in default vs optimized time
+	 */
 	@Test
 	public void performanceIntegrationTest() {
 		Float defaultTime = defaultRuntime();

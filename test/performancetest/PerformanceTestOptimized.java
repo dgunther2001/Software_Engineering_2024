@@ -34,7 +34,7 @@ public class PerformanceTestOptimized {
 		// somehow batch data into bitesized lists of 1,000,000 (BATCH_SIZE) elements
 		// have a counter that is less than batchsize and store the current v
 		
-		for (int num_iter = 0; num_iter < NUM_ITERATIONS; num_iter++) {
+		for (int numIter = 0; numIter < NUM_ITERATIONS; numIter++) {
 			for (int start = 0; start < 100; start++){
 				
 				startTime = System.currentTimeMillis();
