@@ -10,7 +10,7 @@ import engine.userapi.UserDataStream;
 /**
  * Integration test that checks performance
  */
-public class performanceIntegrationTest {
+public class PerformanceIntegrationTest {
 
 		/**
 		 * Default performance test
@@ -127,7 +127,7 @@ public class performanceIntegrationTest {
 	 * Checks the difference in default vs optimized time
 	 */
 	@Test
-	public void performanceIntegrationTest() {
+	public void pIntegrationTest() {
 		Float defaultTime = defaultRuntime();
 		Float optimizedTime = optimizedRuntime();
 		
