@@ -49,7 +49,7 @@ public class PerformanceControllerDefault implements ProtoController {
 	public ProtoUserDataStream receiveUserRequest(ProtoUserDataStream data) {
 		
 		
-    	final int MAX_THREADS = 14;
+    	final int MAX_THREADS = 10;
     	
     	if (data == null || data.getInput().size() < 1) {
     	    throw new IllegalArgumentException("Input data can't be null");
@@ -88,6 +88,16 @@ public class PerformanceControllerDefault implements ProtoController {
     		
     		*/
     		futures.add(threadPool.submit(dataOutput));
+    		
+    		if (futures.size() > 1000000) {
+    			for (Future<?> future : futures) {
+    				try {
+						future.get();
+					} catch (Throwable t) {
+						t.printStackTrace();
+					}
+    			}
+    		}
     	}
     	
     	
