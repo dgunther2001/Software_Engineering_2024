@@ -65,7 +65,7 @@ public class PerformanceTestOptimized {
 		averageTime = cumulativeTime / NUM_ITERATIONS;
 		
 		System.out.println("(Optimized) Average time of compute execution for given test case over " + NUM_ITERATIONS + " iterations is " + averageTime + " milliseconds.");
-	
+		
 	}
 	
 }

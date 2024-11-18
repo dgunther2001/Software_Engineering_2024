@@ -100,6 +100,8 @@ public class PerformanceControllerDefault implements ProtoController {
     		}
     	}
     	
+    	threadPool.shutdown();
+    	
     	
     	return data;
 	}
