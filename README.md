@@ -16,5 +16,7 @@ The cache, as shown below significantly decreases the amount of time it takes fo
 **Daniel's Computer - Post-Cache-Optimization:** ~8513 ms - 57.97% improvement.  
 **Nick's Computer - Pre-Optimization:** ~24564 ms.  
 **Nick's Computer - Post-Cache-Optimization:**  ~19140 ms - 22.08% improvement.  
+**Nico's Computer - Pre-Optimization:** ~66421.0 milliseconds.
+**Nico's Computer - Post-Optimization:** ~57551.0 milliseconds. - 13.35% improvement.
 
 Following cache optimization, I implemented some memory and thread optimizations that decreased the number of threads and heap usage, but likely sacrafices some quantity of time.
