@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import engine.cache.Cache;
 import engine.computeapi.ComputeEngine;
@@ -59,11 +60,16 @@ public class PerformanceControllerOptimized implements ProtoController {
     	
     	Iterator<Integer> dataIt = data.getInput().iterator();
     	
+    	AtomicInteger val = new AtomicInteger(0);
+    	String classID = toString();
+    	
     	ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS, new ThreadFactory() {
 			@Override
 			public Thread newThread(Runnable r) {
 				Thread myThread = new Thread(r);
 				myThread.setDaemon(true);
+				myThread.setName(val + classID);
+				val.getAndIncrement();
 				return myThread;
 			}
     		
@@ -103,8 +109,11 @@ public class PerformanceControllerOptimized implements ProtoController {
 						t.printStackTrace();
 					}
     			}
+    			futures.clear();
     		}
     	}
+    	
+    	threadPool.shutdown();
     	
     	
     	return data;
