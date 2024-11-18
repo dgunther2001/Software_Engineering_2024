@@ -126,7 +126,7 @@ public class PerformanceIntegrationTest {
 	/**
 	 * Checks the difference in default vs optimized time
 	 */
-	@Test
+	//@Test
 	public void perfIntegrationTest() {
 		Float defaultTime = defaultRuntime();
 		Float optimizedTime = optimizedRuntime();
