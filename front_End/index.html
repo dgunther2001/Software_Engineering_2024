@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <style>
+      .navbar {
+        align-content: center;
+        justify-content: center;
+      }
+      .navbar-item img {
+        max-height: 100px;
+        width: auto;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img
+            src="assets/coolMathLogo.png"
+            alt="Cool Math Logo"
+          />
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          <div class="box">
+            <div class="field">
+              <label class="subtitle">Enter an Integer</label>
+              <input
+                id="rectangleIn"
+                class="input is-link"
+                type="number"
+                placeholder="Number Of Rectangles"
+              />
+            </div>
+            <div class="field">
+              <button id="generateButton" class="button is-link">
+                Generate
+              </button>
+            </div>
+          </div>
+          <div class="box">
+            <h3 class="subtitle">Output:</h3>
+            <p id="areaOutput">Numbers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

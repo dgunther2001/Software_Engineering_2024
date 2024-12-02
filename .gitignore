@@ -9,3 +9,4 @@ src/Engine/.LCKUser.java~
 .settings/org.eclipse.jdt.core.prefs
 .DS_Store
 build
+front_End/node_modules
