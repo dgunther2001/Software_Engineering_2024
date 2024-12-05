@@ -19,4 +19,14 @@ The cache, as shown below significantly decreases the amount of time it takes fo
 **Nico's Computer - Pre-Optimization:** ~66421.0 milliseconds.
 **Nico's Computer - Post-Optimization:** ~57551.0 milliseconds. - 13.35% improvement.
 
-Following cache optimization, I implemented some memory and thread optimizations that decreased the number of threads and heap usage, but likely sacrafices some quantity of time.
+Following cache optimization, I implemented some memory and thread optimizations that decreased the number of threads and heap usage, but likely sacrafices some quantity of time.  
+
+
+To run the full configuration with the Docker Container, do the following:  
+- Modify the HostConfig.java ip address field to contain your local machine's ip address.  
+- Run ./gradlew eclipse.  
+- Run ./gradlew jibDockerBuild
+- Run the main method in DataStoreServer.java to start the local data store server.   
+- Run the docker containter with the following command (ensure that the Docker Daemon is enabled) docker run -p 50051:50051 dgunther2001/riemannserver:latest  
+- Install gRpcurl, and run the following command grpcurl -plaintext -d "{\"inputFile\": \"src/client/test.txt\", \"outputFile\": \"src/client/test_output.txt\", \"delimiter\": \"\n\"}" 172.17.0.2:50051 dataPass.riemannSumService/createRiemannSum  
+- Modifications can be made to input and output file paths, as well as the delimiter, but the rest should remain the same.  
