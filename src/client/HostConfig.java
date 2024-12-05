@@ -1,7 +1,7 @@
 package client;
 
 public class HostConfig {
-	final String ipAddr = "137.140.147.5:50052";
+	final String ipAddr = "127.0.0.1:50052";
 	
 	String getIpAddr() {
 		return ipAddr;
