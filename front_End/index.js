@@ -1,11 +1,9 @@
-import { YourServiceClient } from './generated/your_service_grpc_web_pb';
-import { YourRequest, YourResponse } from './generated/your_service_pb';
 
 const output = document.getElementById('areaOutput');
 const input = document.getElementById('rectangleIn');
 const genButton = document.getElementById('generateButton');
 
-const client = new YourServiceClient('http://your-grpc-web-server-address');
+const client = new YourServiceClient('http://localhost:50051');
 
 genButton.addEventListener('click', () => {
     const request = new YourRequest();
