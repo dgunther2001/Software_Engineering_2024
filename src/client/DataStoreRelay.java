@@ -19,6 +19,7 @@ import engine.dataapi.ProtoDataStream;
 import engine.userapi.UserDataStream;
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
+import client.HostConfig;
 
 public class DataStoreRelay implements ProtoDataStore {
 
@@ -35,7 +36,10 @@ public class DataStoreRelay implements ProtoDataStore {
 		// convert it to a user input data stream
 		// return that data stream
 		
-		final receiveInputServiceBlockingStub blockingStub = receiveInputServiceGrpc.newBlockingStub(Grpc.newChannelBuilder("localhost:50052", InsecureChannelCredentials.create()).build());
+		HostConfig config = new HostConfig();
+		String ipAddr = config.getIpAddr();
+		
+		final receiveInputServiceBlockingStub blockingStub = receiveInputServiceGrpc.newBlockingStub(Grpc.newChannelBuilder(ipAddr, InsecureChannelCredentials.create()).build());
 		inputRequest req =  inputRequest.newBuilder().setInputPath(filePath).setOutputPath(filePathOut).build();
 		inputDataBack res = blockingStub.readInputData(req);
 		
@@ -46,7 +50,9 @@ public class DataStoreRelay implements ProtoDataStore {
 
 	@Override
 	public void receiveDataStoreRequest(ProtoDataStream newData, String filePath, char delim) throws IOException {
-		final receiveOutputServiceBlockingStub blockingStub = receiveOutputServiceGrpc.newBlockingStub(Grpc.newChannelBuilder("localhost:50052", InsecureChannelCredentials.create()).build());
+		HostConfig config = new HostConfig();
+		String ipAddr = config.getIpAddr();
+		final receiveOutputServiceBlockingStub blockingStub = receiveOutputServiceGrpc.newBlockingStub(Grpc.newChannelBuilder(ipAddr, InsecureChannelCredentials.create()).build());
 		outputRequest req =  outputRequest.newBuilder().setOutputPath(filePath).setDelimiter(Character.toString(delim)).setData(newData.getData().get(0)).build();
 		blockingStub.receiveDataStoreRequest(req);
 	}
