@@ -54,7 +54,7 @@ public class Client {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		String target = "localhost:50051";
+		String target = "0.0.0.0:50051";
 		ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
 		String input = args[0];
 		String output = args[1];

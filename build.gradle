@@ -1,6 +1,11 @@
 plugins {
     id 'com.google.protobuf' version '0.9.4'
+    id 'com.google.cloud.tools.jib' version '3.4.0'
 }
+
+//import com.google.cloud.tools.jib.gradle.DockerBuildTask
+//import com.google.cloud.tools.jib.gradle.JibExtension
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -61,3 +66,67 @@ protobuf {
         all()*.plugins { grpc {} }
     }
 }
+
+   jib {
+       from {
+           image = 'openjdk:21-jdk-slim'
+       }
+       to {
+           image = 'dgunther2001/riemannserver:latest' 
+       }
+       container {
+       	   ports = ['50051']
+           mainClass = 'server.RiemannSumServer' 
+       }
+   }
+  
+ /*
+   jib {
+       from {
+           image = 'openjdk:21-jdk-slim'
+       }
+       to {
+           image = 'dgunther2001/datastoreserver:latest' 
+       }
+       container {
+           mainClass = 'server.DataStoreServer' 
+       }
+   }
+   */
+   
+
+/*
+task buildRiemannServer(type: jib) {
+	//group = 'docker'
+	//description = 'Riemann'
+	//jib {
+       from {
+           image = 'openjdk:21-jdk-slim'
+       }
+       to {
+           image = 'dgunther2001/riemannserver:latest' 
+       }
+       container {
+           mainClass = 'server.RiemannSumServer' 
+       }
+    //}
+}
+*/
+/*
+task buildDataServer {
+	group = 'docker'
+	description = 'Data'
+	jib {
+       from {
+           image = 'openjdk:21-jdk-slim'
+       }
+       to {
+           image = 'dgunther2001/dataserver:latest' 
+       }
+       container {
+           mainClass = 'server.DataStoreServer' 
+       }
+    }
+}
+*/
+
