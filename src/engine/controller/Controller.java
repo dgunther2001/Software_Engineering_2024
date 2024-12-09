@@ -90,9 +90,30 @@ public class Controller implements ProtoController{
     			return sendComputeRequest(individualStream, computeEngineCache);
     		};
     		futures.add(threadPool.submit(dataOutput));
+    		
+    		
+    		if (futures.size() > 1000000) {
+    	    	futures.forEach(future -> {
+    	    		try {
+    	    			List<String> dataConv = new ArrayList<String>();
+    	    			Float currentArea = ((ProtoComputeEngineDataStream) future.get()).getArea();
+    	    	        try {
+    	    	        	String dataConvAdd = currentArea.toString();
+    	    	        	dataConv.add(dataConvAdd);
+    	    	        } catch (Throwable t) {
+    	    	        	System.out.println("Floating point data unable to convert to string for storage.");
+    	    	        	t.printStackTrace();
+    	    	        }
+    	    	        ProtoDataStream toStore = new DataStream(dataConv);
+    	    	        dataStorage.receiveDataStoreRequest(toStore, data.getFilePath(), data.getDelimiter());
+    	    		} catch (Throwable t) {
+    	    			t.printStackTrace();
+    	    		}
+    	    	});
+    	    	
+    	    	futures.clear();
+    		}
     	}
-    	
-
     	
     	futures.forEach(future -> {
     		try {
@@ -110,19 +131,19 @@ public class Controller implements ProtoController{
     		} catch (Throwable t) {
     			t.printStackTrace();
     		}
+   
+    		
+    		
     	});
     	
+    	futures.clear();
+    	threadPool.shutdown();
     	
-    	try {
-	    	dataStorage.receiveUserOutRequest(data.getFilePath(), data.getDelimiter());
-    	} catch (Throwable t) {
-    		t.printStackTrace();
-    		return null;
-    	}
     	
     	return data;
         
     }
+   
 
     /**
      * Component that sends a request to the Compute engine.

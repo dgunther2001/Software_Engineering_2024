@@ -72,7 +72,7 @@ protobuf {
            image = 'openjdk:21-jdk-slim'
        }
        to {
-           image = 'dgunther2001/riemannserver:latest' 
+           image = 'riemannserver:latest' 
        }
        container {
        	   ports = ['50051']
