@@ -27,6 +27,6 @@ To run the full configuration with the Docker Container, do the following:
 - Run ./gradlew eclipse.  
 - Run ./gradlew jibDockerBuild
 - Run the main method in DataStoreServer.java to start the local data store server.   
-- Run the docker containter with the following command (ensure that the Docker Daemon is enabled) docker run -p 50051:50051 dgunther2001/riemannserver:latest  
-- Install gRpcurl, and run the following command grpcurl -plaintext -d "{\"inputFile\": \"src/client/test.txt\", \"outputFile\": \"src/client/test_output.txt\", \"delimiter\": \"\n\"}" 172.17.0.2:50051 dataPass.riemannSumService/createRiemannSum  
+- Run the docker containter with the following command (ensure that the Docker Daemon is enabled) docker run -p 50051:50051 riemannserver:latest  
+- Install gRpcurl, and run the following command grpcurl -plaintext -d "{\"inputFile\": \"src/client/test.txt\", \"outputFile\": \"src/client/test_output.txt\", \"delimiter\": \"\n\"}" 0.0.0.0:50051 dataPass.riemannSumService/createRiemannSum  
 - Modifications can be made to input and output file paths, as well as the delimiter, but the rest should remain the same.  
