@@ -1,15 +1,15 @@
 package EndToEnd;
 
-import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
+import engine.computeapi.ComputeEngineDataStream;
 import engine.controller.Controller;
-import engine.userapi.UserDataStream;
 import engine.dataapi.DataStore;
+import engine.userapi.UserDataStream;
 
 /**
  * Tests the system components and uses input data not from the Client.
@@ -63,8 +63,14 @@ public class EndToEnd {
 		
 		Controller testController = new Controller(testDataStore);
 		
-		//testController.receiveUserRequest(testUserData);
+		testController.receiveUserRequest(testUserData);
 		
+		System.out.println("UserDataStream.getInput result: " + testUserData.getInput());
+		
+		// Have a for loop to iterate through the list and put every integer from the list 
+		// into the computeEngineDataStream for computing.
+		
+		//ComputeEngineDataStream testDataStream = new ComputeEngineDataStream();
 		
 		
 		
