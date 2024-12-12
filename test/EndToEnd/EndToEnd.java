@@ -38,43 +38,54 @@ public class EndToEnd {
 		 */
 		
 		List<String> input = new ArrayList<String>();
-		
-		for(int i = 0; i < 10000; i++) {
-			for (int j = 0; j < 100; j++) {
-				input.add(Integer.toString((int) ((Math.random() * (100000 - 1)) + 1)));
+//		
+//		for(int i = 0; i < 10000; i++) {
+//			for (int j = 0; j < 100; j++) {
+//				input.add(Integer.toString((int) ((Math.random() * (100000 - 1)) + 1)));
+//			}
+//		}
+//		
+		for(int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				input.add(Integer.toString((int) ((Math.random() * (10 - 1)) + 1)));
 			}
 		}
 		
-		//System.out.println(input);
+		System.out.println(input);
 		
 		
 		writeToFile(input, "D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
-				
+		
+		//clearFile("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
+		
 		DataStore testDataStore = new DataStore();		
-		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", '\n', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
+		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", ',', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
+		
+		Controller testController = new Controller(testDataStore);
+		
+		//testController.receiveUserRequest(testUserData);
 		
 		
-		
-		
-//		UserDataStream testUserData = new UserDataStream(input, '\n', "D:\\Downloads\\Software_Engineering_Stuff");
-//		
-//		Controller testController = new Controller();
 		
 		
 			
 	}
 	
 	public static void writeToFile(List<String> list, String file) throws FileNotFoundException {
-		try(PrintWriter writer = new PrintWriter(new File(file))) {
-			for(String item : list) {
-				writer.println(item);
-			}
-			System.out.println("Wrote information to file.");
-		} catch (FileNotFoundException e) {
-			System.out.println("Failure");
-			e.printStackTrace();
-		}
+	    try (PrintWriter writer = new PrintWriter(new File(file))) {
+	        for (int i = 0; i < list.size(); i++) {
+	            writer.print(list.get(i));
+	            if (i < list.size() - 1) {
+	                writer.print(","); // Add comma after each element except the last one
+	            }
+	        }
+	        System.out.println("Wrote information to file.");
+	    } catch (FileNotFoundException e) {
+	        System.out.println("Failure");
+	        e.printStackTrace();
+	    }
 	}
+
 	
 	public static void clearFile(String file) {
 		try(PrintWriter writer = new PrintWriter(new File(file))) {
