@@ -1,7 +1,11 @@
 package EndToEnd;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import engine.controller.Controller;
 import engine.userapi.UserDataStream;
@@ -15,8 +19,9 @@ public class EndToEnd {
 	/**
 	 * Main method for testing.
 	 * @param args
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		/*
 		 *  Doesn't use the Client, just sends data to the controller and 
 		 *  runs it through the entire system.
@@ -26,17 +31,59 @@ public class EndToEnd {
 		 *  First, make a UserDataStream object to hold the input information.
 		 *  Second, use the controller's sendDataStoreRequest method to send the user input data to the DataStore.
 		 *   
+		 *  The datastore will then send the data back to the controller
+		 *  
+		 *  The userDataStream is sent from the user to the controller.
+		 *   
 		 */
 		
-		List<Integer> input = new ArrayList<Integer>();
+		List<String> input = new ArrayList<String>();
 		
-		UserDataStream testUserData = new UserDataStream(input, '\n', "arbitrary.txt");
-		DataStore data = new DataStore();
-		Controller testController = new Controller(data);
+		for(int i = 0; i < 10000; i++) {
+			for (int j = 0; j < 100; j++) {
+				input.add(Integer.toString((int) ((Math.random() * (100000 - 1)) + 1)));
+			}
+		}
+		
+		//System.out.println(input);
+		
+		
+		writeToFile(input, "D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
+				
+		DataStore testDataStore = new DataStore();		
+		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", '\n', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
 		
 		
 		
 		
+//		UserDataStream testUserData = new UserDataStream(input, '\n', "D:\\Downloads\\Software_Engineering_Stuff");
+//		
+//		Controller testController = new Controller();
+		
+		
+			
+	}
+	
+	public static void writeToFile(List<String> list, String file) throws FileNotFoundException {
+		try(PrintWriter writer = new PrintWriter(new File(file))) {
+			for(String item : list) {
+				writer.println(item);
+			}
+			System.out.println("Wrote information to file.");
+		} catch (FileNotFoundException e) {
+			System.out.println("Failure");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void clearFile(String file) {
+		try(PrintWriter writer = new PrintWriter(new File(file))) {
+			writer.print("");
+			System.out.println("Cleared file.");
+		} catch (FileNotFoundException e) {
+			System.out.println("Failed to clear file.");
+			e.printStackTrace();
+		}
 	}
 
 }
