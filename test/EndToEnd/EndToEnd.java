@@ -22,6 +22,9 @@ import engine.userapi.UserDataStream;
 public class EndToEnd {
 	
 	// Can modify to run less tests.
+	/**
+	 * Number of tests to be ran.
+	 */
 	private static int NUM_TESTS_PER_RUN = 100;
 	
 	/**
