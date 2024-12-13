@@ -9,6 +9,7 @@ import java.util.List;
 import engine.computeapi.ComputeEngineDataStream;
 import engine.controller.Controller;
 import engine.dataapi.DataStore;
+import engine.dataapi.DataStream;
 import engine.userapi.UserDataStream;
 
 /**
@@ -65,16 +66,46 @@ public class EndToEnd {
 		
 		testController.receiveUserRequest(testUserData);
 		
-		System.out.println("UserDataStream.getInput result: " + testUserData.getInput());
-		
 		// Have a for loop to iterate through the list and put every integer from the list 
-		// into the computeEngineDataStream for computing.
+		// into the computeEngineDataStream for computing. For now I will use one input.
 		
-		//ComputeEngineDataStream testDataStream = new ComputeEngineDataStream();
+		// Get one input from the list, convert it to a string, and pass it through the compute engine.
 		
+		List<String> outData = new ArrayList<String>();
 		
-		
+		for(int i = 0; i < testUserData.getInput().size(); i++) {	
+			// Grab the number of rectangles from the list at index i, and make a CEDS out of it.
+			ComputeEngineDataStream inData = new ComputeEngineDataStream(testUserData.getInput().get(i));
 			
+			// Send a compute request from the controller to the compute engine.
+			testController.sendComputeRequest(inData);
+			
+			// Displaying the area.
+			System.out.println("Area of " + testUserData.getInput().get(i) + ": " + inData.getArea());
+
+			
+			
+		}
+		
+		
+		
+//		int listVal = testUserData.getInput().get(0);
+//		
+//		ComputeEngineDataStream inData = new ComputeEngineDataStream(listVal);
+//		
+//		testController.sendComputeRequest(inData);
+//				
+//		System.out.println("Area of " + listVal + ": " + inData.getArea());
+		
+		// Store the results back into the List and send that list to DataStore.
+		// The list is a list of strings.
+		// Now send a data store request to store the data stream
+		
+		//DataStream data = new DataStream();
+		
+		//testController.sendDataStoreRequest(null);	
+		
+		
 	}
 	
 	public static void writeToFile(List<String> list, String file) throws FileNotFoundException {
