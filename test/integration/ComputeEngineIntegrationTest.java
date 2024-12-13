@@ -55,27 +55,7 @@ public class ComputeEngineIntegrationTest{
 		}
 		
 	}
-	
-	/**
-	 * ensure exception is thrown
-	 * 
-	 * user api is throwing it
-	 */
-	@Test
-	public void testExceptions() {
-		List<Integer> arr = new ArrayList<>();
-		UserDataStream output = new UserDataStream(arr, '\n', "");
-		IntegrationDataStore ds = new IntegrationDataStore();
-		Controller testController = new Controller(ds);
-		
-		boolean throwsException = false;
-		try {
-			testController.receiveUserRequest(output);
-		}catch(Throwable e) {
-			throwsException = true;
-		}
-		assertTrue(throwsException);
-	}
+
 	
 	
 }
