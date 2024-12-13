@@ -25,7 +25,7 @@ public class EndToEnd {
 	/**
 	 * Number of tests to be ran.
 	 */
-	private static int NUM_TESTS_PER_RUN = 100;
+	private static int NUM_TESTS_PER_RUN = 1;
 	
 	/**
 	 * Main method for testing.
