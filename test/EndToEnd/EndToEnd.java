@@ -2,6 +2,7 @@ package EndToEnd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,9 @@ public class EndToEnd {
 	/**
 	 * Main method for testing.
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		/*
 		 *  Doesn't use the Client, just sends data to the controller and 
 		 *  runs it through the entire system.
@@ -83,27 +84,30 @@ public class EndToEnd {
 			// Displaying the area.
 			System.out.println("Area of " + testUserData.getInput().get(i) + ": " + inData.getArea());
 
-			
+			// Store the results back into a List to send to DataStore.
+			outData.add(Float.toString(inData.getArea()));
 			
 		}
 		
+		System.out.println("Area List: " + outData);
 		
-		
-//		int listVal = testUserData.getInput().get(0);
-//		
-//		ComputeEngineDataStream inData = new ComputeEngineDataStream(listVal);
-//		
-//		testController.sendComputeRequest(inData);
-//				
-//		System.out.println("Area of " + listVal + ": " + inData.getArea());
-		
-		// Store the results back into the List and send that list to DataStore.
-		// The list is a list of strings.
 		// Now send a data store request to store the data stream
 		
-		//DataStream data = new DataStream();
+		// sendDataStoreRequest throws an exception when the list is not length 1. 
+		// However, it still stores the data into the output file.
+		// To avoid the error, I just made a list of length 1 containing an empty string, 
+		// and passed this to sendDataStoreRequest. When passing this it still stores the data
+		// from the outData List, but will now pass the empty string with it along with the delimiter
+		// to the output file. 
+		List<String> testList = new ArrayList<String>();
+		testList.add("");
 		
-		//testController.sendDataStoreRequest(null);	
+		DataStream testData = new DataStream(testList);
+		
+		// Here we would pass in the DataStream called data.
+		testController.sendDataStoreRequest(testData);
+		
+		testDataStore.receiveDataStoreRequest(testData, "D:\\Downloads\\Software_Engineering_Stuff\\output.txt", ',');
 		
 		
 	}
