@@ -21,6 +21,7 @@ import engine.userapi.UserDataStream;
  */
 public class EndToEnd {
 	
+	// Can modify to run less tests.
 	private static int NUM_TESTS_PER_RUN = 100;
 	
 	/**
@@ -34,76 +35,9 @@ public class EndToEnd {
 		 *  runs it through the entire system.
 		 */
 		
-		List<String> input = new ArrayList<String>();
-//		
-//		for(int i = 0; i < 10000; i++) {
-//			for (int j = 0; j < 100; j++) {
-//				input.add(Integer.toString((int) ((Math.random() * (100000 - 1)) + 1)));
-//			}
-//		}
-//		
-		for(int i = 0; i < 2; i++) {
-			for (int j = 0; j < 2; j++) {
-				input.add(Integer.toString((int) ((Math.random() * (10 - 1)) + 1)));
-			}
-		}
-		
-		System.out.println(input);
-		
-		
-		writeToFile(input, "D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
-		
-		//clearFile("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
-		
-		DataStore testDataStore = new DataStore();		
-		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", ',', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
-		
-		Controller testController = new Controller(testDataStore);
-		
-		testController.receiveUserRequest(testUserData);
-		
-		// Have a for loop to iterate through the list and put every integer from the list 
-		// into the computeEngineDataStream for computing. For now I will use one input.
-		
-		// Get one input from the list, convert it to a string, and pass it through the compute engine.
-		
-		List<String> outData = new ArrayList<String>();
-		
-		for(int i = 0; i < testUserData.getInput().size(); i++) {	
-			// Grab the number of rectangles from the list at index i, and make a CEDS out of it.
-			ComputeEngineDataStream inData = new ComputeEngineDataStream(testUserData.getInput().get(i));
-			
-			// Send a compute request from the controller to the compute engine.
-			testController.sendComputeRequest(inData);
-			
-			// Displaying the area.
-			System.out.println("Area of " + testUserData.getInput().get(i) + ": " + inData.getArea());
-
-			// Store the results back into a List to send to DataStore.
-			outData.add(Float.toString(inData.getArea()));
-			
-		}
-		
-		System.out.println("Area List: " + outData);
-		
-		// Now send a data store request to store the data stream
-		
-		// sendDataStoreRequest throws an exception when the data stream list is not length 1. 
-		// However, it still stores the data into the output file.
-		// To avoid the error, I just made a list of length 1 containing an empty string, 
-		// and passed this to sendDataStoreRequest. When passing this it still stores the data
-		// from the outData List, but will now pass the empty string with it along with the delimiter
-		// to the output file. 
-		List<String> testList = new ArrayList<String>();
-		testList.add("");
-		
-		DataStream testData = new DataStream(testList);
-		
-		// Here we would pass in the DataStream called data.
-		testController.sendDataStoreRequest(testData);
-		
-		testDataStore.receiveDataStoreRequest(testData, "D:\\Downloads\\Software_Engineering_Stuff\\output.txt", ',');
-		
+		long seed = System.currentTimeMillis();
+		Random random = new Random(seed);
+		runFuzzyTest(seed, random);
 		
 	}
 	
@@ -126,10 +60,83 @@ public class EndToEnd {
 		System.out.println("Test running with seed: " + seed);
 		List<String> input = new ArrayList<String>();
 		for(int i = 0; i < NUM_TESTS_PER_RUN; i++) {
+			for(int j = 0; j < 100; j++) {
+				for (int k = 0; k < 100; k++) {
+					input.add(Integer.toString((int) ((Math.random() * (100000 - 1)) + 1)));
+				}
+			}
+			passDataToSystem(input);
+		}
+	}
+	
+	/**
+	 * The functionality of passing input data and running it through the controller,
+	 * data store, and compute engine.
+	 * @param input
+	 */
+	public static void passDataToSystem(List<String> input) {
+		try {
+			writeToFile(input, "D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt");
+		} catch (FileNotFoundException e) {
+			System.out.println("File doesn't exist.");
+			e.printStackTrace();
+		}
+		
+		DataStore testDataStore = new DataStore();		
+		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", ',', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
+		Controller testController = new Controller(testDataStore);
+		
+		// Make sure the controller can receive a user request.
+		try {
+			testController.receiveUserRequest(testUserData);
+		} catch(Exception e) {
+			System.out.println("Failed to pass user data.");
+			e.printStackTrace();
+		}
+		
+		// outData will hold the list of computed areas.
+		List<String> outData = new ArrayList<String>();
+		
+		for(int i = 0; i < testUserData.getInput().size(); i++) {	
+			// Grab the number of rectangles from the list at index i, and make a CEDS out of it.
+			ComputeEngineDataStream inData = new ComputeEngineDataStream(testUserData.getInput().get(i));
+			
+			// Send a compute request from the controller to the compute engine.
+			testController.sendComputeRequest(inData);
+			
+//			// Displaying the area.
+//			System.out.println("Area of " + testUserData.getInput().get(i) + ": " + inData.getArea());
+
+			// Store the results into a List to send to DataStore.
+			outData.add(Float.toString(inData.getArea()));
 			
 		}
 		
+		System.out.println("Area List: " + outData);
+		
+		// Now send a data store request to store the data stream
+		
+		// sendDataStoreRequest throws an exception when the data stream list is not length 1. 
+		// However, it still stores the data into the output file.
+		// To avoid the error, I just made a list of length 1 containing an empty string, 
+		// and passed this to sendDataStoreRequest. When passing this it still stores the data
+		// from the outData List, but will now pass the empty string along with the delimiter
+		// to the output file. 
+		List<String> testList = new ArrayList<String>();
+		testList.add("");
+		
+		DataStream testData = new DataStream(testList);
+		testController.sendDataStoreRequest(testData);
+		
+		try {
+			testDataStore.receiveDataStoreRequest(testData, "D:\\Downloads\\Software_Engineering_Stuff\\output.txt", ',');
+		} catch (IOException e) {
+			System.out.println("File doesn't exist.");
+			e.printStackTrace();
+		}
+		
 	}
+	
 	
 	/**
 	 * Writes a list of strings to a file.
