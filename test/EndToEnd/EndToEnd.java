@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import org.junit.jupiter.api.Test;
 
 import engine.computeapi.ComputeEngineDataStream;
 import engine.controller.Controller;
@@ -18,6 +21,8 @@ import engine.userapi.UserDataStream;
  */
 public class EndToEnd {
 	
+	private static int NUM_TESTS_PER_RUN = 100;
+	
 	/**
 	 * Main method for testing.
 	 * @param args
@@ -27,16 +32,6 @@ public class EndToEnd {
 		/*
 		 *  Doesn't use the Client, just sends data to the controller and 
 		 *  runs it through the entire system.
-		 *  
-		 *  Going to try to get one test input to work then I will make a loop to test multiple inputs.
-		 *  
-		 *  First, make a UserDataStream object to hold the input information.
-		 *  Second, use the controller's sendDataStoreRequest method to send the user input data to the DataStore.
-		 *   
-		 *  The datastore will then send the data back to the controller
-		 *  
-		 *  The userDataStream is sent from the user to the controller.
-		 *   
 		 */
 		
 		List<String> input = new ArrayList<String>();
@@ -93,7 +88,7 @@ public class EndToEnd {
 		
 		// Now send a data store request to store the data stream
 		
-		// sendDataStoreRequest throws an exception when the list is not length 1. 
+		// sendDataStoreRequest throws an exception when the data stream list is not length 1. 
 		// However, it still stores the data into the output file.
 		// To avoid the error, I just made a list of length 1 containing an empty string, 
 		// and passed this to sendDataStoreRequest. When passing this it still stores the data
@@ -112,6 +107,36 @@ public class EndToEnd {
 		
 	}
 	
+	/**
+	 * Method to start the fuzzy test.
+	 */
+	@Test
+	public void testFuzzy() {
+		long seed = System.currentTimeMillis();
+		Random random = new Random(seed);
+		runFuzzyTest(seed, random);
+	}
+	
+	/**
+	 * The fuzzy test itself.
+	 * @param seed
+	 * @param random
+	 */
+	public static void runFuzzyTest(long seed, Random random) {
+		System.out.println("Test running with seed: " + seed);
+		List<String> input = new ArrayList<String>();
+		for(int i = 0; i < NUM_TESTS_PER_RUN; i++) {
+			
+		}
+		
+	}
+	
+	/**
+	 * Writes a list of strings to a file.
+	 * @param list
+	 * @param file
+	 * @throws FileNotFoundException
+	 */
 	public static void writeToFile(List<String> list, String file) throws FileNotFoundException {
 	    try (PrintWriter writer = new PrintWriter(new File(file))) {
 	        for (int i = 0; i < list.size(); i++) {
@@ -126,8 +151,11 @@ public class EndToEnd {
 	        e.printStackTrace();
 	    }
 	}
-
 	
+	/**
+	 * Clears a file.
+	 * @param file
+	 */
 	public static void clearFile(String file) {
 		try(PrintWriter writer = new PrintWriter(new File(file))) {
 			writer.print("");
