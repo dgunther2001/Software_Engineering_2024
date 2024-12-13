@@ -1,4 +1,4 @@
-package EndToEnd;
+package endtoend1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
