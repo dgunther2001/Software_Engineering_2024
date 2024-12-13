@@ -86,7 +86,7 @@ public class EndToEnd {
 		}
 		
 		DataStore testDataStore = new DataStore();		
-		UserDataStream testUserData = testDataStore.readInputData("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", ',', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
+		UserDataStream testUserData = testDataStore.readInputData2("D:\\Downloads\\Software_Engineering_Stuff\\arbitrary.txt", ',', "D:\\Downloads\\Software_Engineering_Stuff\\output.txt");
 		Controller testController = new Controller(testDataStore);
 		
 		// Make sure the controller can receive a user request.

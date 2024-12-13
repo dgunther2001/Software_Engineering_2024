@@ -80,6 +80,34 @@ public class DataStore implements ProtoDataStore {
 	 * Reads the input data from a file
 	 */
 	public UserDataStream readInputData(String filePathIn, char delim, String filePathOut) {
+		String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filePathIn)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        List<String> inputIntegersAsString = Arrays.asList(content.split(","));
+        
+        List<Integer> inputIntegers = new ArrayList<>();
+        
+        for(String s : inputIntegersAsString) {
+        	try {
+        		inputIntegers.add(Integer.valueOf(s));
+        	} catch (Throwable t) {
+        		t.printStackTrace();
+        	}
+        }
+        
+        UserDataStream data = new UserDataStream(inputIntegers, delim, filePathOut);
+        
+        return data;
+	}
+	
+	/**
+	 * This method is used for the end to end test in order to keep everything else working.
+	 */
+	public UserDataStream readInputData2(String filePathIn, char delim, String filePathOut) {
 	    String content = "";
 	    try {
 	        content = new String(Files.readAllBytes(Paths.get(filePathIn)));
