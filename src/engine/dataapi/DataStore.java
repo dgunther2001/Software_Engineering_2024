@@ -103,6 +103,37 @@ public class DataStore implements ProtoDataStore {
         
         return data;
 	}
+	
+	/**
+	 * This method is used for the end to end test in order to keep everything else working.
+	 */
+	public UserDataStream readInputData2(String filePathIn, char delim, String filePathOut) {
+	    String content = "";
+	    try {
+	        content = new String(Files.readAllBytes(Paths.get(filePathIn)));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+	    // Convert char delimiter to a String to use in split method
+	    String delimiter = String.valueOf(delim);
+	    List<String> inputIntegersAsString = Arrays.asList(content.split(delimiter));
+
+	    List<Integer> inputIntegers = new ArrayList<>();
+	    for (String s : inputIntegersAsString) {
+	        try {
+	            inputIntegers.add(Integer.valueOf(s.trim())); // trim spaces and new lines
+	        } catch (Throwable t) {
+	            System.out.println("Error");
+	            t.printStackTrace();
+	        }
+	    }
+
+	    UserDataStream data = new UserDataStream(inputIntegers, delim, filePathOut);
+	    return data;
+	}
+
+
 
 
 	

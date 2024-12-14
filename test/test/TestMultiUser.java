@@ -22,8 +22,7 @@ import engine.dataapi.DataStore;
  */
 public class TestMultiUser {
 	
-	// TODO 1: change the type of this variable to the name you're using for your
-	// User <-> ComputeEngine API
+	
 	private Controller coordinator;
 	
 	/**
